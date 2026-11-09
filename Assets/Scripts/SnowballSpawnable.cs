@@ -4,32 +4,48 @@ using UnityEngine.XR.Hands;
 
 public class SnowballSpawnable : MonoBehaviour
 {
-    private GestureTracker handObject;
-    private Rigidbody physicsObject;
+    List<Vector3> trackingPos = new List<Vector3>();
+
+    private GestureTracker parentHand;
+    private Rigidbody physicsBody;
 
     private bool isReleased = false;
+    private float velocity = 1000f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake() { physicsObject = GetComponent<Rigidbody>(); }
+    void Awake() 
+    { 
+        physicsBody = GetComponent<Rigidbody>(); 
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if ((handObject.isCurledActive == true) && (isReleased == false))
+        if ((parentHand.isCurledActive == true) && (isReleased == false))
         {
-            physicsObject.isKinematic = true; 
-            transform.position = handObject.HandMarker.transform.position;
+            physicsBody.useGravity = false; 
+            transform.position = parentHand.HandMarker.transform.position;
+            transform.rotation = parentHand.HandMarker.transform.rotation;
+
+            if (trackingPos.Count > 5)
+            {
+                trackingPos.RemoveAt(0);
+            }
+            trackingPos.Add(transform.position);
         }
 
         else
         {
-            physicsObject.isKinematic = false; 
+            Vector3 direction = trackingPos[trackingPos.Count - 1] - trackingPos[0];
+            physicsBody.AddForce(direction * velocity);
+            physicsBody.useGravity = true; 
+            physicsBody.isKinematic = false; 
             if (isReleased == false) { isReleased = true; }
         }
     }
 
     public void InitializeObject(GameObject parent)
     {
-        handObject = parent.GetComponent<GestureTracker>();
+        parentHand = parent.GetComponent<GestureTracker>();
     }
 }
