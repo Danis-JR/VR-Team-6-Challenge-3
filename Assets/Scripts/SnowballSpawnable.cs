@@ -10,6 +10,7 @@ public class SnowballSpawnable : MonoBehaviour
     private Rigidbody physicsBody;
 
     private bool isReleased = false;
+    private bool isToss = true;
     private float velocity = 1000f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,14 +40,18 @@ public class SnowballSpawnable : MonoBehaviour
             Vector3 direction = trackingPos[trackingPos.Count - 1] - trackingPos[0];
             
             // Wrist Flicking
-            if (parentHand.isUnderHand == false) { physicsBody.AddForce(direction * velocity); }
+            if (isToss == false) 
+            { 
+                velocity = velocity * 0.9f;
+                physicsBody.AddForce(direction * velocity); 
+            }
 
             physicsBody.useGravity = true; 
             physicsBody.isKinematic = false; 
 
             if (isReleased == false) 
             { 
-                if (parentHand.isUnderHand == true) { physicsBody.AddForce(direction * velocity); }
+                if (isToss == true) { physicsBody.AddForce(direction * velocity); }
                 isReleased = true; 
             }
         }
@@ -55,5 +60,6 @@ public class SnowballSpawnable : MonoBehaviour
     public void InitializeObject(GameObject parent)
     {
         parentHand = parent.GetComponent<GestureTracker>();
+        isToss = parentHand.isUnderHand;
     }
 }

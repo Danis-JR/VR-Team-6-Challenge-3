@@ -33,4 +33,20 @@ public class GestureTracker : MonoBehaviour
            isCurledActive = false;
         }
     }
+
+    public void UnderHandTrigger()
+    {
+        if (isUnderHand == false)
+        { 
+           isUnderHand = true;
+        }
+    }
+
+    public void WristThrowTrigger()
+    {
+        if (isUnderHand == true)
+        { 
+           isUnderHand = false;
+        }
+    }
 }
