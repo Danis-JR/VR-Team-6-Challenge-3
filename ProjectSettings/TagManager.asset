@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Snowball
+  - Floatable
+  - Face Plate
+  - Floor Surface
   layers:
   - Default
   - TransparentFX

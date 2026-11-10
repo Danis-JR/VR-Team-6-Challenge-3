@@ -8,6 +8,7 @@ public class SnowballSpawnable : MonoBehaviour
 
     private GestureTracker parentHand;
     private Rigidbody physicsBody;
+    public GameObject particles;
 
     private bool isReleased = false;
     private bool isToss = true;
@@ -28,7 +29,7 @@ public class SnowballSpawnable : MonoBehaviour
             transform.position = parentHand.HandMarker.transform.position;
             transform.rotation = parentHand.HandMarker.transform.rotation;
 
-            if (trackingPos.Count > 5)
+            if (trackingPos.Count > 10)
             {
                 trackingPos.RemoveAt(0);
             }
@@ -42,7 +43,7 @@ public class SnowballSpawnable : MonoBehaviour
             // Wrist Flicking
             if (isToss == false) 
             { 
-                velocity = velocity * 0.9f;
+                velocity = velocity * 0.865f;
                 physicsBody.AddForce(direction * velocity); 
             }
 
@@ -61,5 +62,11 @@ public class SnowballSpawnable : MonoBehaviour
     {
         parentHand = parent.GetComponent<GestureTracker>();
         isToss = parentHand.isUnderHand;
+    }
+
+    public void DestoryObject()
+    {
+        GameObject debris = Instantiate(particles, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }
