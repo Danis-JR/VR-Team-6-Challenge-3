@@ -37,10 +37,18 @@ public class SnowballSpawnable : MonoBehaviour
         else
         {
             Vector3 direction = trackingPos[trackingPos.Count - 1] - trackingPos[0];
-            physicsBody.AddForce(direction * velocity);
+            
+            // Wrist Flicking
+            if (parentHand.isUnderHand == false) { physicsBody.AddForce(direction * velocity); }
+
             physicsBody.useGravity = true; 
             physicsBody.isKinematic = false; 
-            if (isReleased == false) { isReleased = true; }
+
+            if (isReleased == false) 
+            { 
+                if (parentHand.isUnderHand == true) { physicsBody.AddForce(direction * velocity); }
+                isReleased = true; 
+            }
         }
     }
 

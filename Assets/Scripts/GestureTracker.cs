@@ -10,6 +10,7 @@ public class GestureTracker : MonoBehaviour
     private SnowballSpawnable snowballCS;
 
     public bool isCurledActive = false;
+    public bool isUnderHand = true;
 
 
     public void GenerateTrigger()
