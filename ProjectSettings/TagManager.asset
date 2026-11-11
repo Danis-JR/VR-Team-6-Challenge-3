@@ -8,6 +8,7 @@ TagManager:
   - Floatable
   - Face Plate
   - Floor Surface
+  - Anchor
   layers:
   - Default
   - TransparentFX
@@ -40,7 +41,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Hidden
   m_SortingLayers:
   - name: Default
     uniqueID: 0
