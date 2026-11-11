@@ -12,7 +12,7 @@ public class SnowballSpawnable : MonoBehaviour
 
     private bool isReleased = false;
     private bool isToss = true;
-    private float velocity = 1000f;
+    private float velocity = 750f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake() 
@@ -43,7 +43,7 @@ public class SnowballSpawnable : MonoBehaviour
             // Wrist Flicking
             if (isToss == false) 
             { 
-                velocity = velocity * 0.865f;
+                velocity = velocity * 0.9f;
                 physicsBody.AddForce(direction * velocity); 
             }
 

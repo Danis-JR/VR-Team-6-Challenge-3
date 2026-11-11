@@ -2,23 +2,33 @@ using UnityEngine;
 
 public class TargetHandler : MonoBehaviour
 {
-    private int score = 0;
+    // [SerializeField] private GameManager gameTracker;
 
+    public bool gameStart = false;
+    public int remainingTargets = 0;
+    private int initialCount = 0;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+    void Awake() 
+    { 
+        initialCount = remainingTargets;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void reset() 
+    { 
+        remainingTargets = initialCount; 
+        gameStart = false;
     }
 
-    public void validHit (int points)
+    public void HitTrigger(string targetID)
     {
-        score += points;
+        if (remainingTargets > 0) { remainingTargets--; }
+
+        // if (remainingTargets == 0) { gameTracker.endSequence(); }
     }
+
+    public void StartTrigger()
+    {
+        gameStart = true;
+    }
+
 }

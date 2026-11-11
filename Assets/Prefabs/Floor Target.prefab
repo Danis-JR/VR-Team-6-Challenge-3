@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5477250185906112945}
+  - component: {fileID: 5306707701800499147}
   m_Layer: 0
   m_Name: Floor Target
   m_TagString: Untagged
@@ -32,6 +33,28 @@ Transform:
   - {fileID: 2490950217042125075}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &5306707701800499147
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7063699902273619916}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9584cc1b2a3f6064e92dd7f5b9811f88, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &2119923784545068009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -100,6 +123,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: be2911572dc3afa448d24b4e97edc5f1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e4b3022ced66b934495d9b0bde57a284, type: 2}
     - target: {fileID: -5754084199372789682, guid: be2911572dc3afa448d24b4e97edc5f1, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -163,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlateInteractable
   handler: {fileID: 0}
-  points: 0
+  targetID: 
 --- !u!4 &1937042681172100098 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: be2911572dc3afa448d24b4e97edc5f1, type: 3}

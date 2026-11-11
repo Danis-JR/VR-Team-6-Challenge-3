@@ -9,7 +9,7 @@ public class SnowballCollision : MonoBehaviour
     {
         if (collision.gameObject.tag == "Face Plate")
         {
-            parent.DestoryObject();
+            //parent.DestoryObject();
         }
     }
 }

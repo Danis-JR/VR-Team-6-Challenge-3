@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\djrho\\VR Team 6 Challenge 3\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\djrho\\VR Team 6 Challenge 3\\Assets\\Scripts\\FloorIteractable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\FloorIteractable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\djrho\\VR Team 6 Challenge 3\\Library\\PackageCache\\com.unity.render-pipelines.universal@d7774c218bdf\\Shaders\\Particles\\ParticlesUnlit.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Library\\PackageCache\\com.unity.render-pipelines.universal@d7774c218bdf\\Shaders\\Particles\\ParticlesUnlit.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
@@ -47,6 +51,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "FloorIteractable.cs",
+              "DocumentMoniker": "C:\\Users\\djrho\\VR Team 6 Challenge 3\\Assets\\Scripts\\FloorIteractable.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\FloorIteractable.cs",
+              "ToolTip": "C:\\Users\\djrho\\VR Team 6 Challenge 3\\Assets\\Scripts\\FloorIteractable.cs",
+              "RelativeToolTip": "Assets\\Scripts\\FloorIteractable.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-10T12:28:03.603Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "ParticlesUnlit.shader",
               "DocumentMoniker": "C:\\Users\\djrho\\VR Team 6 Challenge 3\\Library\\PackageCache\\com.unity.render-pipelines.universal@d7774c218bdf\\Shaders\\Particles\\ParticlesUnlit.shader",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.render-pipelines.universal@d7774c218bdf\\Shaders\\Particles\\ParticlesUnlit.shader",
@@ -59,7 +76,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "HandVisualizer.cs",
               "DocumentMoniker": "C:\\Users\\djrho\\VR Team 6 Challenge 3\\Assets\\Samples\\XR Hands\\1.8.1\\HandVisualizer\\Scripts\\HandVisualizer.cs",
               "RelativeDocumentMoniker": "Assets\\Samples\\XR Hands\\1.8.1\\HandVisualizer\\Scripts\\HandVisualizer.cs",
@@ -67,12 +84,11 @@
               "RelativeToolTip": "Assets\\Samples\\XR Hands\\1.8.1\\HandVisualizer\\Scripts\\HandVisualizer.cs",
               "ViewState": "AgIAAI0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-09T05:39:09.232Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-09T05:39:09.232Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "XRHandShape.cs",
               "DocumentMoniker": "C:\\Users\\djrho\\VR Team 6 Challenge 3\\Library\\PackageCache\\com.unity.xr.hands@0908de89928b\\Runtime\\Gestures\\XRHandShape.cs",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.xr.hands@0908de89928b\\Runtime\\Gestures\\XRHandShape.cs",
@@ -84,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "RigTargetFollower.cs",
               "DocumentMoniker": "C:\\Users\\djrho\\VR Team 6 Challenge 3\\Assets\\Scripts\\RigTargetFollower.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\RigTargetFollower.cs",
@@ -96,7 +112,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "RotationOnlyHandDriver.cs",
               "DocumentMoniker": "C:\\Users\\djrho\\VR Team 6 Challenge 3\\Assets\\Scripts\\RotationOnlyHandDriver.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\RotationOnlyHandDriver.cs",
@@ -108,7 +124,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "CaptureSessionManager.cs",
               "DocumentMoniker": "C:\\Users\\djrho\\VR Team 6 Challenge 3\\Assets\\Samples\\XR Hands\\1.8.1\\Hand Capture\\Scripts\\CaptureSessionManager.cs",
               "RelativeDocumentMoniker": "Assets\\Samples\\XR Hands\\1.8.1\\Hand Capture\\Scripts\\CaptureSessionManager.cs",
@@ -120,7 +136,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "BodyFollowHead.cs",
               "DocumentMoniker": "C:\\Users\\djrho\\VR Team 6 Challenge 3\\Assets\\Scripts\\BodyFollowHead.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\BodyFollowHead.cs",
@@ -132,7 +148,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "XRInputModalityManager.cs",
               "DocumentMoniker": "C:\\Users\\djrho\\VR Team 6 Challenge 3\\Library\\PackageCache\\com.unity.xr.interaction.toolkit@63ca3b7ce776\\Runtime\\Inputs\\XRInputModalityManager.cs",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.xr.interaction.toolkit@63ca3b7ce776\\Runtime\\Inputs\\XRInputModalityManager.cs",

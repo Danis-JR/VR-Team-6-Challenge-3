@@ -3,15 +3,40 @@ using UnityEngine;
 public class RingInteractable : MonoBehaviour
 {
     [SerializeField] private TargetHandler handler;
-    public int points = 0;
+    [SerializeField] private string targetID;
 
-    // Update is called once per frame
+    private GameObject rim;
+    private GameObject origin;
+    private Animator animator;
+
+    private bool triggered = false;
+
+    void Awake()
+    {
+        rim = transform.parent.gameObject;
+        origin = rim.transform.parent.gameObject;
+        animator = origin.GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        if (handler.gameStart == false) { triggered = false; }
+    }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Snowball")
+        if (triggered == false)
         {
-            handler.validHit(points);
+            if (collision.gameObject.tag == "Snowball")
+            {
+                animator.SetTrigger("spin");
+
+                if (handler.gameStart == true)
+                {
+                    handler.HitTrigger(targetID);
+                    triggered = true;
+                }
+            }
         }
     }
 }
