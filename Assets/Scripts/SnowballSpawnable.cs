@@ -4,11 +4,12 @@ using UnityEngine.XR.Hands;
 
 public class SnowballSpawnable : MonoBehaviour
 {
+    [SerializeField] public GameObject debrisPrefab;
     List<Vector3> trackingPos = new List<Vector3>();
 
     private GestureTracker parentHand;
     private Rigidbody physicsBody;
-    public GameObject particles;
+    private GameObject debris;
 
     private bool isReleased = false;
     private bool isToss = true;
@@ -21,7 +22,7 @@ public class SnowballSpawnable : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if ((parentHand.isCurledActive == true) && (isReleased == false))
         {
@@ -64,9 +65,14 @@ public class SnowballSpawnable : MonoBehaviour
         isToss = parentHand.isUnderHand;
     }
 
-    public void DestoryObject()
+    private void OnTriggerEnter(Collider collision)
     {
-        GameObject debris = Instantiate(particles, transform.position, transform.rotation);
-        Destroy(gameObject);
+        if (collision.gameObject.tag != "Ring Target")
+        {
+           debris = Instantiate(debrisPrefab, transform.position, transform.rotation);
+           ParticleSystem particles = debris.GetComponent<ParticleSystem>();
+           particles.Play();
+           Destroy(gameObject);
+        }
     }
 }

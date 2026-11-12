@@ -31,3 +31,4 @@ public class RigTargetFollower : MonoBehaviour
         transform.rotation = targetRotation;
     }
 }
+

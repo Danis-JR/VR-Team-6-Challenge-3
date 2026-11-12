@@ -5,10 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - Snowball
-  - Floatable
-  - Face Plate
+  - Ground
   - Floor Surface
-  - Anchor
+  - Floor Target
+  - Ring Target
   layers:
   - Default
   - TransparentFX

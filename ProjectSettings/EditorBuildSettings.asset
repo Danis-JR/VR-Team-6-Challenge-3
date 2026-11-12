@@ -26,9 +26,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/ThrowTesting.unity
     guid: 69f822a16572be44db84721e1c4e095a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DemoScene.unity
     guid: 8d5b12c6b44be8b48818d3274c1decf8
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: 523f4063cf4b665e1ae0d4db26641196
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: aa6975a4c301c674c818a310112758d5, type: 2}

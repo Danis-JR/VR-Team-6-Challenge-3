@@ -28,7 +28,7 @@ public class TrialHandler : MonoBehaviour
 
         else 
         {
-            // if trial ended before all are targets
+            // if trial ended before all are targets hit
         }
     }
 }
