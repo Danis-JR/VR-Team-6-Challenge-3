@@ -14,10 +14,8 @@ public class InfoToggle : MonoBehaviour
 
     void LateUpdate()
     {
-        Vector3 currentEuler = transform.rotation.eulerAngles;
-        currentEuler.x = 0f;
-        currentEuler.z = 0f;
-        transform.rotation = Quaternion.Euler(currentEuler);
+        Vector3 horizontalForward = Vector3.ProjectOnPlane(transform.parent.forward, Vector3.up);
+        transform.rotation = Quaternion.LookRotation(horizontalForward.normalized, Vector3.up);
     }
 
     public void EnableTrigger()

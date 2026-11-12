@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class TargetHandler : MonoBehaviour
 {
-    // [SerializeField] private GameManager gameTracker;
+    [SerializeField] public TrialHandler trialTracker;
 
-    public bool gameStart = false;
     public int remainingTargets = 0;
     private int initialCount = 0;
+    public bool trialActive = false;
 
     void Awake() 
     { 
@@ -16,19 +16,19 @@ public class TargetHandler : MonoBehaviour
     public void reset() 
     { 
         remainingTargets = initialCount; 
-        gameStart = false;
+        trialActive = false;
     }
 
     public void HitTrigger(string targetID)
     {
         if (remainingTargets > 0) { remainingTargets--; }
 
-        // if (remainingTargets == 0) { gameTracker.endSequence(); }
+        if (remainingTargets == 0) { trialTracker.StopTrial(); }
     }
 
     public void StartTrigger()
     {
-        gameStart = true;
+        trialActive = true;
     }
 
 }

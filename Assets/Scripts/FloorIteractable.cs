@@ -20,7 +20,7 @@ public class FloorInteractable : MonoBehaviour
 
     void Update()
     {
-        if (handler.gameStart == false) { triggered = false; }
+        if (handler.trialActive == false) { triggered = false; }
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -31,7 +31,7 @@ public class FloorInteractable : MonoBehaviour
             {
                 animator.SetTrigger("relative");
 
-                if (handler.gameStart == true)
+                if (handler.trialActive == true)
                 {
                     handler.HitTrigger(targetID);
                     triggered = true;
