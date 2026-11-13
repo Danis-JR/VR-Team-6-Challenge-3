@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5666468624492116890}
   - component: {fileID: 8143642405400957862}
+  - component: {fileID: 1479740022149634079}
   m_Layer: 0
   m_Name: Ring Target
   m_TagString: Untagged
@@ -55,6 +56,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1479740022149634079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7598014701584474301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a0415d564a43041871f07cb5fc3ab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeleteTarget
 --- !u!1001 &261524222618278434
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -123,6 +136,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: be2911572dc3afa448d24b4e97edc5f1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0825c12eb695de54fb0c1a7b1e95adc8, type: 2}
     - target: {fileID: -5754084199372789682, guid: be2911572dc3afa448d24b4e97edc5f1, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -293,17 +310,31 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: be2911572dc3afa448d24b4e97edc5f1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5844153836166181330}
+      addedObject: {fileID: 5127710273832600009}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: be2911572dc3afa448d24b4e97edc5f1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5127710273832600009}
+      addedObject: {fileID: 1794054702053277362}
   m_SourcePrefab: {fileID: 100100000, guid: be2911572dc3afa448d24b4e97edc5f1, type: 3}
 --- !u!1 &1512439658617666076 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: be2911572dc3afa448d24b4e97edc5f1, type: 3}
   m_PrefabInstance: {fileID: 1746316981441873741}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &5844153836166181330
+--- !u!114 &5127710273832600009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512439658617666076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee3e5f7f35701f4d9a0650cf2e447b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RingInteractable
+  handler: {fileID: 0}
+  targetID: -1
+--- !u!64 &1794054702053277362
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -325,20 +356,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8321685774571456786, guid: 9e1dc1c14313460d872de39e35129b39, type: 3}
---- !u!114 &5127710273832600009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1512439658617666076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eee3e5f7f35701f4d9a0650cf2e447b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RingInteractable
-  handler: {fileID: 0}
-  targetID: 
 --- !u!4 &2285176003178143910 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: be2911572dc3afa448d24b4e97edc5f1, type: 3}

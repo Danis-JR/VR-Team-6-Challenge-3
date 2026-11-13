@@ -3,14 +3,12 @@ using UnityEngine;
 public class FloorInteractable : MonoBehaviour
 {
     [SerializeField] private TargetHandler handler;
-    [SerializeField] private string targetID;
+    [SerializeField] public int targetID = -1;
 
     private GameObject rim;
     private GameObject origin;
     private Animator animator;
 
-    private bool triggered = false;
-    
     void Awake()
     {
         rim = transform.parent.gameObject;
@@ -20,23 +18,21 @@ public class FloorInteractable : MonoBehaviour
 
     void Update()
     {
-        if (handler.trialActive == false) { triggered = false; }
+        if (handler.stayActive(targetID) == false) { animator.SetTrigger("hit"); }
+    }
+
+    public void setUp(int id, TargetHandler targethandler)
+    {
+        targetID = id;
+        handler = targethandler;
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (triggered == false)
+        if (collision.gameObject.tag == "Snowball")
         {
-            if (collision.gameObject.tag == "Snowball")
-            {
-                animator.SetTrigger("relative");
-
-                if (handler.trialActive == true)
-                {
-                    handler.HitTrigger(targetID);
-                    triggered = true;
-                }
-            }
+            handler.HitTrigger(targetID);
+            animator.SetTrigger("hit");
         }
     }
 }

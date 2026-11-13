@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5477250185906112945}
   - component: {fileID: 5306707701800499147}
+  - component: {fileID: 115088635755564354}
   m_Layer: 0
   m_Name: Floor Target
   m_TagString: Untagged
@@ -55,6 +56,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &115088635755564354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7063699902273619916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a0415d564a43041871f07cb5fc3ab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeleteTarget
 --- !u!1001 &2119923784545068009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -194,7 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlateInteractable
   handler: {fileID: 0}
-  targetID: 
+  targetID: 0
 --- !u!4 &1937042681172100098 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: be2911572dc3afa448d24b4e97edc5f1, type: 3}
@@ -268,6 +281,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: be2911572dc3afa448d24b4e97edc5f1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0d07fcbd9bfafe743967d8f94b850f20, type: 2}
     - target: {fileID: -5754084199372789682, guid: be2911572dc3afa448d24b4e97edc5f1, type: 3}
       propertyPath: m_Mesh
       value: 
