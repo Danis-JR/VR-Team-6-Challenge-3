@@ -8,9 +8,12 @@ public class TrialHandler : MonoBehaviour
 {
     [SerializeField] public TargetHandler targetTracker;
 
-    public string goal_time = "";
-    public string current_time = "";
-    public TextMeshProUGUI watchDisplay;
+    // Stores goal times as vectors X = mintues, Y = seconds, z = milliseconds
+    [SerializeField]
+    private List<Vector3Int> goalTimes = new List<Vector3Int>();
+    private Vector3Int currentTime = new Vector3Int(0, 0, 0);
+
+    public TextMeshProUGUI timeDisplay;
 
     public bool trialActive = false;
 
@@ -55,14 +58,13 @@ public class TrialHandler : MonoBehaviour
             yield return null;
 
             elapsedTime += Time.deltaTime;
-
             TimeSpan time = TimeSpan.FromSeconds(elapsedTime);
 
-            current_time = time.Minutes.ToString("D2") + ":" + time.Seconds.ToString("D2") + ":" + (time.Milliseconds / 10).ToString("D2");
+            currentTime.x = Mathf.RoundToInt(time.Minutes);
+            currentTime.y = Mathf.RoundToInt(time.Seconds);
+            currentTime.z = Mathf.RoundToInt(time.Milliseconds / 10);
 
-            //current_time = string.Format("{0:D2}:{1:D2}:{2:D2}", time.Minutes, time.Seconds, time.Milliseconds / 10);
-
-            watchDisplay.text = current_time;
+            timeDisplay.text = currentTime.x.ToString("D2") + ":" + currentTime.y.ToString("D2") + ":" + currentTime.z.ToString("D2");
         }
     }
 }

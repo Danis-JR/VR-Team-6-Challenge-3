@@ -7055,6 +7055,10 @@ PrefabInstance:
       value: Trail Manager
       objectReference: {fileID: 0}
     - target: {fileID: 3237746404141330234, guid: 622a4419683541546a933c0f5cc92f81, type: 3}
+      propertyPath: timeDisplay
+      value: 
+      objectReference: {fileID: 1388945370}
+    - target: {fileID: 3237746404141330234, guid: 622a4419683541546a933c0f5cc92f81, type: 3}
       propertyPath: watchDisplay
       value: 
       objectReference: {fileID: 1388945370}
