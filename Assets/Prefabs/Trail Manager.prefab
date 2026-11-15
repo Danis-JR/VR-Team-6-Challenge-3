@@ -44,7 +44,446 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 700e1340ec813ce4fba40a3e6a5acbe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetHandler
+  RingTargetPrefab: {fileID: 7598014701584474301, guid: dbec775bd6442e44bb72a2b89ac4b68b, type: 3}
+  FloorTargetPrefab: {fileID: 7063699902273619916, guid: 1b4c88bfa859e874992e12041e70b6cf, type: 3}
+  BarrierPrefab: {fileID: 1216834833575600154, guid: 5af543fc4c95aa4459ee9b5b93f68ca0, type: 3}
   trialTracker: {fileID: 3237746404141330234}
+  first_layout:
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Floor
+    speed: 0
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Barrier
+    speed: 0.5
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: -1.5
+      max: 1.5
+    zRange:
+      min: 0
+      max: 0
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Floor
+    speed: 0.2
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Ring
+    speed: 0
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Floor
+    speed: 1
+    curve:
+      x: 1
+      y: 0
+      z: 0
+    size: 0.75
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 2
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Ring
+    speed: 1
+    curve:
+      x: 1
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: -1
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: -1.5
+      max: 1.5
+  second_layout:
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Floor
+    speed: 0
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Floor
+    speed: 0
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Floor
+    speed: 0
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Ring
+    speed: 0
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Ring
+    speed: 0
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Ring
+    speed: 0
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
+  third_layout:
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Ring
+    speed: 0
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Ring
+    speed: 0
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Floor
+    speed: 0
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Floor
+    speed: 0
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Ring
+    speed: 0
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Floor
+    speed: 0
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
+  fourth_layout:
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Floor
+    speed: 0
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Ring
+    speed: 0
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Floor
+    speed: 0
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Ring
+    speed: 0
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Floor
+    speed: 0
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
+  - isActive: 0
+    spawnAnchor: {fileID: 0}
+    type: Ring
+    speed: 0
+    curve:
+      x: 0
+      y: 0
+      z: 0
+    size: 0
+    xRange:
+      min: 0
+      max: 0
+    yRange:
+      min: 0
+      max: 0
+    zRange:
+      min: 0
+      max: 0
   remainingTargets: 0
   trialActive: 0
 --- !u!1 &3136905297097983618
@@ -93,3 +532,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrailHandler
   targetTracker: {fileID: 3724456835649351019}
+  goalTimes: []
+  timeDisplay: {fileID: 0}
+  trialActive: 0

@@ -49,6 +49,17 @@ public class TrialHandler : MonoBehaviour
         trialActive = false;
     }
 
+    private bool validateTime(Vector3Int trialTime, Vector3Int goalTime)
+    {
+        // compares time of current trial to see if goal was reached
+
+        if (trialTime.x > goalTime.x) { return false; }
+        if (trialTime.y > goalTime.y) { return false; }
+        if (trialTime.z > goalTime.z) { return false; }
+
+        return true;
+    }
+
     public IEnumerator stopwatch()
     {
         float elapsedTime = 0f;

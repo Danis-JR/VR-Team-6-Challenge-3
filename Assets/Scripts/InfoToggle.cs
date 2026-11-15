@@ -9,7 +9,6 @@ public class InfoToggle : MonoBehaviour
     void Awake()
     {
         infoDisplay = transform.GetChild(0).gameObject;
-        infoDisplay.SetActive(false);
     }
 
     void LateUpdate()

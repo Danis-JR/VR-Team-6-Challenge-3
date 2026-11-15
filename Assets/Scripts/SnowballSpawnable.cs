@@ -12,7 +12,7 @@ public class SnowballSpawnable : MonoBehaviour
     private GameObject debris;
 
     private bool isReleased = false;
-    private bool isToss = true;
+    public bool isToss = true;
     private float velocity = 750f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
