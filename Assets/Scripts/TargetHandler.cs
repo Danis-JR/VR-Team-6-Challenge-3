@@ -101,7 +101,7 @@ public class TargetHandler : MonoBehaviour
 
     public void HitTrigger(int targetID)
     {
-        remainingTargets--;
+        if (remainingTargets > 0) { remainingTargets--; }
 
         if (remainingTargets == 0) { if (trialActive) { trialTracker.StopTrial(); } }
 
