@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class RingInteractable : MonoBehaviour
@@ -13,6 +14,7 @@ public class RingInteractable : MonoBehaviour
 
     private float timer = 0f;
     private bool isCurve = false;
+    private bool isPaused = false;
 
     private GameObject rim;
     private GameObject origin;
@@ -28,6 +30,12 @@ public class RingInteractable : MonoBehaviour
     void Update()
     {
         if (handler.stayActive(targetID) == false) { animator.SetTrigger("hit"); }
+
+        if ( isPaused ) 
+        {
+            if (animator.speed > 0f) { animator.speed -= 0.01f; }
+            return;
+        }
 
         timer += Time.deltaTime * speed;
         float t = (1f - Mathf.Cos(timer)) * 0.5f;
@@ -85,8 +93,22 @@ public class RingInteractable : MonoBehaviour
     {
         if (collision.gameObject.tag == "Snowball")
         {
-            handler.HitTrigger(targetID);
-            animator.SetTrigger("hit");
+            if (collision.GetComponent<SnowballSpawnable>().isToss == true) 
+            {
+                handler.HitTrigger(targetID);
+                animator.SetTrigger("hit");
+            }
+
+            else { StartCoroutine(Pause()); }
         }
+    }
+
+    IEnumerator Pause()
+    {
+        isPaused = true;
+        yield return new WaitForSeconds(1.75f);
+
+        isPaused = false;
+        animator.speed = 1f;
     }
 }

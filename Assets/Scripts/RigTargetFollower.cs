@@ -9,7 +9,7 @@ public class RigTargetFollower : MonoBehaviour
     public float maxArmLength = 0.75f;
     public Transform characterShoulder;
 
-    void Update()
+    void LateUpdate()
     {
         if (vrTrackingSource == null) return;
 

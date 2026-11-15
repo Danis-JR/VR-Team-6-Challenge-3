@@ -2,76 +2,109 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.XR.Hands;
 
+
+public struct TrackedFrame 
+{
+    public Vector3 position;
+    public float time;
+}
+
 public class SnowballSpawnable : MonoBehaviour
 {
     [SerializeField] public GameObject debrisPrefab;
-    List<Vector3> trackingPos = new List<Vector3>();
+    [SerializeField] private Material normalSnow;
+    [SerializeField] private Material frostedSnow;
+
+    //List<Vector3> trackingPos = new List<Vector3>();
+    private List<TrackedFrame> trackingFrames = new List<TrackedFrame>();
 
     private GestureTracker parentHand;
     private Rigidbody physicsBody;
+    private Animator animator;
     private GameObject debris;
 
     private bool isReleased = false;
     public bool isToss = true;
-    private float velocity = 750f;
+
+    private float throwVelocity = 2f;
+    private float flingVelocity = 15f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake() 
     { 
         physicsBody = GetComponent<Rigidbody>(); 
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
         if ((parentHand.isCurledActive == true) && (isReleased == false))
         {
             physicsBody.useGravity = false; 
+            if (isToss == false) { physicsBody.isKinematic = false; }
+
             transform.position = parentHand.HandMarker.transform.position;
             transform.rotation = parentHand.HandMarker.transform.rotation;
 
-            if (trackingPos.Count > 10)
+            if (trackingFrames.Count > 5)
             {
-                trackingPos.RemoveAt(0);
+                trackingFrames.RemoveAt(0);
             }
-            trackingPos.Add(transform.position);
+
+            trackingFrames.Add(new TrackedFrame {position = transform.position, time = Time.fixedTime });
         }
 
-        else
+        else if (isReleased == false)
         {
-            Vector3 direction = trackingPos[trackingPos.Count - 1] - trackingPos[0];
-            
-            // Wrist Flicking
-            if (isToss == false) 
-            { 
-                velocity = velocity * 0.9f;
-                physicsBody.AddForce(direction * velocity); 
-            }
-
-            physicsBody.useGravity = true; 
-            physicsBody.isKinematic = false; 
-
-            if (isReleased == false) 
-            { 
-                if (isToss == true) { physicsBody.AddForce(direction * velocity); }
-                isReleased = true; 
-            }
+            OnReleaseTrigger();
         }
+    }
+
+    private void OnReleaseTrigger()
+    {
+        if (trackingFrames.Count < 2) return;
+
+        TrackedFrame oldest = trackingFrames[0];
+        TrackedFrame newest = trackingFrames[trackingFrames.Count - 1];
+
+        float timeElapsed = newest.time - oldest.time;
+        if (timeElapsed <= 0f) return;
+
+        Vector3 direction = (newest.position - oldest.position) / timeElapsed;
+
+        physicsBody.useGravity = true; 
+        physicsBody.isKinematic = false; 
+            
+        // Wrist Flicking
+        if (isToss == false) { physicsBody.AddForce(direction.normalized * flingVelocity, ForceMode.Impulse); }
+
+        else { physicsBody.AddForce(direction * throwVelocity, ForceMode.Impulse);}
+
+        isReleased = true; 
     }
 
     public void InitializeObject(GameObject parent)
     {
         parentHand = parent.GetComponent<GestureTracker>();
+        animator.SetBool("isUnderhand", parentHand.isUnderHand);
         isToss = parentHand.isUnderHand;
     }
+
 
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag != "Ring Target")
         {
            debris = Instantiate(debrisPrefab, transform.position, transform.rotation);
+
            ParticleSystem particles = debris.GetComponent<ParticleSystem>();
+           ParticleSystemRenderer render = debris.GetComponent<ParticleSystemRenderer>();
+
+           if (isToss == true) { render.material = normalSnow; }
+           else { render.material = frostedSnow; }
            particles.Play();
+
            Destroy(gameObject);
         }
     }

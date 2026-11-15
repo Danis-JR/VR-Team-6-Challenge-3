@@ -38,7 +38,7 @@ public class GestureTracker : MonoBehaviour
     {
         if (isUnderHand == false)
         { 
-           isUnderHand = true;
+           isUnderHand = true; 
         }
     }
 
@@ -46,7 +46,7 @@ public class GestureTracker : MonoBehaviour
     {
         if (isUnderHand == true)
         { 
-           isUnderHand = false;
+           isUnderHand = false; 
         }
     }
 }
