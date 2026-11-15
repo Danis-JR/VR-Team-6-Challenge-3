@@ -110,7 +110,7 @@ public class TargetHandler : MonoBehaviour
 
     public void StartTrigger()
     {
-        trialActive = false;
+        trialActive = true;
         courseSign.PlayDisplay("start");
     }
 
