@@ -11,6 +11,10 @@ public struct TrackedFrame
 
 public class SnowballSpawnable : MonoBehaviour
 {
+    [SerializeField] public AudioClip defaultSFX;
+    [SerializeField] public AudioClip snowballSFX;
+    [SerializeField] public AudioClip barrierSFX;
+
     [SerializeField] public GameObject debrisPrefab;
     [SerializeField] private Material normalSnow;
     [SerializeField] private Material frostedSnow;
@@ -21,6 +25,7 @@ public class SnowballSpawnable : MonoBehaviour
     private GestureTracker parentHand;
     private Rigidbody physicsBody;
     private Animator animator;
+    private AudioSource audioSource;
     private GameObject debris;
 
     private bool isReleased = false;
@@ -34,6 +39,7 @@ public class SnowballSpawnable : MonoBehaviour
     { 
         physicsBody = GetComponent<Rigidbody>(); 
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();;
     }
 
     // Update is called once per frame
@@ -96,16 +102,21 @@ public class SnowballSpawnable : MonoBehaviour
     {
         if (collision.gameObject.tag != "Ring Target")
         {
-           debris = Instantiate(debrisPrefab, transform.position, transform.rotation);
+            if (collision.gameObject.tag == "Snowball") { audioSource.PlayOneShot(snowballSFX); }
 
-           ParticleSystem particles = debris.GetComponent<ParticleSystem>();
-           ParticleSystemRenderer render = debris.GetComponent<ParticleSystemRenderer>();
+            else if (collision.gameObject.tag == "Barrier") { audioSource.PlayOneShot(barrierSFX); }
 
-           if (isToss == true) { render.material = normalSnow; }
-           else { render.material = frostedSnow; }
-           particles.Play();
+            else { audioSource.PlayOneShot(defaultSFX); }
 
-           Destroy(gameObject);
+            debris = Instantiate(debrisPrefab, transform.position, transform.rotation);
+            ParticleSystem particles = debris.GetComponent<ParticleSystem>();
+            ParticleSystemRenderer render = debris.GetComponent<ParticleSystemRenderer>();
+
+            if (isToss == true) { render.material = normalSnow; }
+            else { render.material = frostedSnow; }
+            particles.Play();
+
+            Destroy(gameObject);
         }
     }
 }
