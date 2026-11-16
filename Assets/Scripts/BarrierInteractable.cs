@@ -119,17 +119,15 @@ public class BarrierInteractable : MonoBehaviour
                 { 
                     animator.SetTrigger("down"); 
                 }
-
-                StartCoroutine(Pause());
             }
-
+            StartCoroutine(Pause());
         }
     }
 
     IEnumerator Pause()
     {
         isPaused = true;
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(5f);
         isPaused = false;
     }
 }

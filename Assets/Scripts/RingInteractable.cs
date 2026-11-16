@@ -125,7 +125,7 @@ public class RingInteractable : MonoBehaviour
     IEnumerator Pause()
     {
         isPaused = true;
-        yield return new WaitForSeconds(2.6f);
+        yield return new WaitForSeconds(3.25f);
 
         isPaused = false;
         animator.speed = 1f;

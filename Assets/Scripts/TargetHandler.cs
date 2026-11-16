@@ -244,7 +244,6 @@ public class TargetHandler : MonoBehaviour
             current_layout = fourth_layout; 
         }
 
-        trialTracker.current_trial = layout;
         trialTracker.current_trial = activeLayout;
         courseSign.PlayDisplay(activeLayout.ToString());
         StartCoroutine(SpawnTargets());
