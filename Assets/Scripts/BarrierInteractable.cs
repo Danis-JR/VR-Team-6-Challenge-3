@@ -107,17 +107,19 @@ public class BarrierInteractable : MonoBehaviour
     {
         if (collision.gameObject.tag == "Snowball")
         {
-            if (collision.GetComponent<SnowballSpawnable>().isToss == false && (toFloor == false)) 
+            if (collision.GetComponent<SnowballSpawnable>().isToss == false) 
             {
-                
-                if (collision.gameObject.transform.position.y > origin.transform.position.y) 
-                { 
-                    animator.SetTrigger("up"); 
-                }
+                if (toFloor == false)
+                {
+                    if (collision.gameObject.transform.position.y > origin.transform.position.y) 
+                    { 
+                        animator.SetTrigger("up"); 
+                    }
 
-                else 
-                { 
-                    animator.SetTrigger("down"); 
+                    else 
+                    { 
+                        animator.SetTrigger("down"); 
+                    }
                 }
             }
             StartCoroutine(Pause());
