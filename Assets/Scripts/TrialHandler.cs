@@ -68,9 +68,12 @@ public class TrialHandler : MonoBehaviour
 
     public void StartTrial()
     {
-        targetTracker.StartTrigger();
-        trialActive = true;
-        StartCoroutine(stopwatch());
+        if (trialActive == false)
+        {
+            targetTracker.StartTrigger();
+            trialActive = true;
+            StartCoroutine(stopwatch());
+        }
     }
 
     public void StopTrial()
@@ -117,7 +120,6 @@ public class TrialHandler : MonoBehaviour
 
         currentTime = new Vector3Int(0, 0, 0);
         targetTracker.LayoutTrigger(current_trial);
-        targetTracker.courseSign.PlayDisplay(current_trial.ToString());
     }
 
     private bool validateTime(Vector3Int trialTime, Vector3Int goalTime)

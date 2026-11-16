@@ -152,7 +152,6 @@ public class TargetHandler : MonoBehaviour
     public void StartTrigger()
     {
         StartCoroutine(SpawnTargets());
-        trialTracker.trialActive = true;
         trialActive = true;
         courseSign.PlayDisplay("start");
     }
