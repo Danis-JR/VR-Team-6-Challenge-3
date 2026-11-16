@@ -7,13 +7,12 @@ using UnityEngine;
 public class TrialHandler : MonoBehaviour
 {
     [SerializeField] public TargetHandler targetTracker;
+    [SerializeField] public SuccessHandler wincheck;
 
     // Stores goal times as vectors X = mintues, Y = seconds, z = milliseconds
     [SerializeField]
     private List<Vector3Int> goalTimes = new List<Vector3Int>();
     private Vector3Int currentTime = new Vector3Int(0, 0, 0);
-
-    public int current_trial = 1;
 
     public TextMeshProUGUI timeDisplay;
 
@@ -38,33 +37,33 @@ public class TrialHandler : MonoBehaviour
 
     public void StopTrial()
     {
-        if (current_trial < 4)
+        if (targetTracker.remainingTargets == 0)
         {
-            if (validateTime(currentTime, goalTimes[current_trial]))
-            {
-                current_trial += 1;
+            // if all are targets hit
+        }
 
-            }
-            else if (targetTracker.remainingTargets != 0)
-            {
-                // if trial was aborted (May implement, not sure)
-            }
-            else
-            {
-                // If player hit all targets, but went over the goal time.
-            }
+        if (validateTime(currentTime, goalTimes[current_trial]))
+        {
+            wincheck.setWin(current_trial);
+        }
+        else if (targetTracker.remainingTargets != 0)
+        {
+            // if trial was aborted (May implement, not sure)
+        }
+        else 
+        {
+            // if trial ended before all are targets hit
         }
 
         trialActive = false;
-
     }
 
     private bool validateTime(Vector3Int trialTime, Vector3Int goalTime)
     {
         // compares time of current trial to see if goal was reached
 
-        if (trialTime.x > goalTime.x) { return false; } else if (trialTime.x < goalTime.x) { return true; }
-        if (trialTime.y > goalTime.y) { return false; } else if (trialTime.y < goalTime.y) { return true; }
+        if (trialTime.x > goalTime.x) { return false; }
+        if (trialTime.y > goalTime.y) { return false; }
         if (trialTime.z > goalTime.z) { return false; }
 
         return true;
@@ -87,7 +86,5 @@ public class TrialHandler : MonoBehaviour
 
             timeDisplay.text = currentTime.x.ToString("D2") + ":" + currentTime.y.ToString("D2") + ":" + currentTime.z.ToString("D2");
         }
-
-        currentTime.Set(0, 0, 0);
     }
 }

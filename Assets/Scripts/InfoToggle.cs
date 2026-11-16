@@ -3,12 +3,18 @@ using UnityEngine.XR.Hands.Samples.GestureSample;
 
 public class InfoToggle : MonoBehaviour
 {
+    [SerializeField] public AudioClip toggleOnSFX;
+    [SerializeField] public AudioClip toggleOffSFX;
+
     private GameObject infoDisplay;
+    private AudioSource audioSource;
+
     private bool enable = false;
 
     void Awake()
     {
         infoDisplay = transform.GetChild(0).gameObject;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void LateUpdate()
@@ -21,14 +27,16 @@ public class InfoToggle : MonoBehaviour
     {
         if (enable == false)
         { 
-           infoDisplay.SetActive(true);
-           enable = true;
+            audioSource.PlayOneShot(toggleOnSFX);
+            infoDisplay.SetActive(true);
+            enable = true;
         }
 
         else
         {
-           infoDisplay.SetActive(false);
-           enable = false;
+            audioSource.PlayOneShot(toggleOffSFX);
+            infoDisplay.SetActive(false);
+            enable = false;
         }
     }
 
