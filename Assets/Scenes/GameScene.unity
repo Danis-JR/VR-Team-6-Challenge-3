@@ -18550,7 +18550,7 @@ MonoBehaviour:
   finale: {fileID: 8300000, guid: 94dacf28107e40b4e824e96de82d7ca5, type: 3}
   afterGoodbye: {fileID: 8300000, guid: 28fc296da504b644c8ded04b904c6b47, type: 3}
   requiredHits: 5
-  trialHandler: {fileID: 0}
+  trialHandler: {fileID: 1884075309}
 --- !u!4 &948025055
 Transform:
   m_ObjectHideFlags: 0
