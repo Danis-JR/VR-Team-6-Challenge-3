@@ -9,7 +9,7 @@ public class InfoToggle : MonoBehaviour
     private AudioListener audioListener;
 
     private GameObject infoDisplay;
-    private bool enable = false;
+    private bool enable = true;
 
     void Awake()
     {

@@ -47,15 +47,16 @@ public class TrialHandler : MonoBehaviour
     public void StopTrial()
     {
         trialActive = false;
+        targetTracker.trialActive = false;
 
         if (T1TD != null)
         {
             if (current_trial > 0 && current_trial < 4)
             {
-                if (validateTime(currentTime, PlayerTimes[current_trial - 1]) || PlayerTimes[current_trial] == emptyV3I)
+                if (validateTime(currentTime, PlayerTimes[current_trial - 1]) || PlayerTimes[current_trial - 1] == emptyV3I)
                 {
-                    PlayerTimes[current_trial] = currentTime;
-                    String newtext = PlayerTimes[current_trial].x.ToString("D2") + ":" + PlayerTimes[current_trial].y.ToString("D2") + ":" + PlayerTimes[current_trial].z.ToString("D2");
+                    PlayerTimes[current_trial - 1] = currentTime;
+                    String newtext = PlayerTimes[current_trial - 1].x.ToString("D2") + ":" + PlayerTimes[current_trial - 1].y.ToString("D2") + ":" + PlayerTimes[current_trial].z.ToString("D2");
                     switch (current_trial)
                     {
                         case 1: T1TD.text = newtext;
@@ -70,15 +71,15 @@ public class TrialHandler : MonoBehaviour
                 }
             }
         }
-        if (validateTime(currentTime, goalTimes[current_trial-1]))
+
+        if (validateTime(currentTime, goalTimes[current_trial - 1]))
         {
 
             hasWon[current_trial - 1] = true;
-            if (hasWon[0] == true && hasWon[1] == true && hasWon[2] == true && hasWon[3] == true)
+            if ((hasWon[0] == true) && ( hasWon[1] == true) && (hasWon[2] == true) && (hasWon[3] == true))
             {
                 // enter win state
-                    if (audioManager != null)
-                        audioManager.OnAllLayoutsCompleted();
+                if (audioManager != null) { audioManager.OnAllLayoutsCompleted(); }
             }
             else if (current_trial <= 4)
             {
@@ -86,9 +87,9 @@ public class TrialHandler : MonoBehaviour
             }
 
         }
-        currentTime.Set(0, 0, 0);
-
+        currentTime = new Vector3Int(0, 0, 0);
         targetTracker.LayoutTrigger(current_trial);
+        targetTracker.courseSign.PlayDisplay(current_trial.ToString());
     }
 
     private bool validateTime(Vector3Int trialTime, Vector3Int goalTime)

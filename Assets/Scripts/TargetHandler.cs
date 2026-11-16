@@ -113,6 +113,8 @@ public class TargetHandler : MonoBehaviour
 
     public void HitTrigger(int targetID)
     {
+        current_layout[targetID].isActive = false;
+
         if (trialActive == true)
         {
             audioSource.pitch += (1f / current_layout.Count);
@@ -125,9 +127,14 @@ public class TargetHandler : MonoBehaviour
             remainingTargets--;
         }
 
-        if (remainingTargets == 0) { if (trialActive) { trialTracker.StopTrial(); } }
-
-        current_layout[targetID].isActive = false;
+        if (remainingTargets == 0) 
+        { 
+            if (trialActive) 
+            { 
+                trialTracker.StopTrial(); 
+                courseSign.PlayDisplay("end");
+             } 
+        }
     }
 
     public void StartTrigger()

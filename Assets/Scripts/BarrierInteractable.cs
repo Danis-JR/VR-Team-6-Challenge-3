@@ -129,7 +129,7 @@ public class BarrierInteractable : MonoBehaviour
     IEnumerator Pause()
     {
         isPaused = true;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(4f);
         isPaused = false;
     }
 }

@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.XR.Hands;
@@ -27,20 +25,26 @@ public class SnowballSpawnable : MonoBehaviour
     private GestureTracker parentHand;
     private Rigidbody physicsBody;
     private Animator animator;
-    private GameObject debris;
     private AudioSource audioSource;
+    private GameObject debris;
 
     private bool isReleased = false;
     public bool isToss = true;
 
     private float throwVelocity = 2f;
     private float flingVelocity = 15f;
+    private int canSpeak = 0;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake() 
+    void Awake()
     { 
         physicsBody = GetComponent<Rigidbody>(); 
         animator = GetComponent<Animator>();
+        
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.loop = false;
+        audioSource.spatialBlend = 1f;
+        audioSource.volume = 0.1f;
     }
 
     // Update is called once per frame
@@ -89,8 +93,6 @@ public class SnowballSpawnable : MonoBehaviour
         else { physicsBody.AddForce(direction * throwVelocity, ForceMode.Impulse);}
 
         isReleased = true; 
-        // Notify Audio Manager When Snowball Is Thrown
-
     }
 
     public void InitializeObject(GameObject parent)
@@ -103,34 +105,26 @@ public class SnowballSpawnable : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if ((collision.gameObject.tag == "Ring Target")) { return; }
-        if (collision.gameObject.tag != "Floor Target") { parentHand.GetComponent<GameAudioManager>().OnTargetMissed(); }
+        if ((collision.gameObject.tag != "Ring Target") && (collision.gameObject.tag != "Player"))
+        {
+            if (collision.gameObject.tag != "Floor Target") 
+            { 
+                if (canSpeak == 3) { parentHand.audioManager.OnTargetMissed(); canSpeak = 0; } 
+                else { canSpeak++; }
+            }
 
-        debris = Instantiate(debrisPrefab, transform.position, transform.rotation);
-        ParticleSystem particles = debris.GetComponent<ParticleSystem>();
-        ParticleSystemRenderer render = debris.GetComponent<ParticleSystemRenderer>();
+            if (isToss == true) { audioSource.PlayOneShot(defaultSFX); }
+            else { audioSource.PlayOneShot(frozenSFX); }
 
-        if (isToss == true) { render.material = normalSnow; }
-        else { render.material = frostedSnow; }
-        particles.Play();
-        Destroy(gameObject);
-        
-        StartCoroutine(Kill());
-    }
+            debris = Instantiate(debrisPrefab, transform.position, transform.rotation);
+            ParticleSystem particles = debris.GetComponent<ParticleSystem>();
+            ParticleSystemRenderer render = debris.GetComponent<ParticleSystemRenderer>();
 
-    IEnumerator Kill()
-    {
+            if (isToss == true) { render.material = normalSnow; }
+            else { render.material = frostedSnow; }
+            particles.Play();
 
-        yield return new WaitForSeconds(2f);
-
-        debris = Instantiate(debrisPrefab, transform.position, transform.rotation);
-        ParticleSystem particles = debris.GetComponent<ParticleSystem>();
-        ParticleSystemRenderer render = debris.GetComponent<ParticleSystemRenderer>();
-
-        if (isToss == true) { render.material = normalSnow; }
-        else { render.material = frostedSnow; }
-        particles.Play();
-
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }

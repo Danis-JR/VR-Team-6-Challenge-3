@@ -336,7 +336,6 @@ MonoBehaviour:
   despawnSFX: {fileID: 8300000, guid: f62b3a007935340498e3fd4fae07573c, type: 3}
   frozenSFX: {fileID: 8300000, guid: e464a61f5a7e00b4da01afcda7108322, type: 3}
   handler: {fileID: 0}
-  audioManager: {fileID: 0}
   targetID: -1
 --- !u!64 &1794054702053277362
 MeshCollider:

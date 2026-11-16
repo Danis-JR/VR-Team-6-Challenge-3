@@ -26,7 +26,7 @@ public class GestureTracker : MonoBehaviour
         audioSource.playOnAwake = false;
         audioSource.loop = false;
         audioSource.spatialBlend = 1f;
-        audioSource.volume = 0.5f;
+        audioSource.volume = 0.7f;
     }
 
 

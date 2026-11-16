@@ -16354,6 +16354,10 @@ PrefabInstance:
       propertyPath: audioManager
       value: 
       objectReference: {fileID: 948025054}
+    - target: {fileID: 2516149792601047521, guid: 725a39605fa00c54b852974965bc5dd8, type: 3}
+      propertyPath: m_RequestedTrackingOriginMode
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2675292171083995426, guid: 725a39605fa00c54b852974965bc5dd8, type: 3}
       propertyPath: m_GesturePerformed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -16386,13 +16390,21 @@ PrefabInstance:
       propertyPath: audioManager
       value: 
       objectReference: {fileID: 948025054}
+    - target: {fileID: 6482706083541284580, guid: 725a39605fa00c54b852974965bc5dd8, type: 3}
+      propertyPath: m_Height
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482706083541284580, guid: 725a39605fa00c54b852974965bc5dd8, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6559483638597628124, guid: 725a39605fa00c54b852974965bc5dd8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6559483638597628124, guid: 725a39605fa00c54b852974965bc5dd8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.662
+      value: 0.811
       objectReference: {fileID: 0}
     - target: {fileID: 6559483638597628124, guid: 725a39605fa00c54b852974965bc5dd8, type: 3}
       propertyPath: m_LocalPosition.z
