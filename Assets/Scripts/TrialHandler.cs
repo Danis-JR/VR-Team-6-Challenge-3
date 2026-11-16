@@ -42,12 +42,22 @@ public class TrialHandler : MonoBehaviour
         if (goalTimes.Count < 4) 
         {
             goalTimes.Clear();
-            goalTimes.Add(new Vector3Int(0, 0, 0));
-            goalTimes.Add(new Vector3Int(0, 0, 0));
-            goalTimes.Add(new Vector3Int(0, 0, 0));
-            goalTimes.Add(new Vector3Int(0, 0, 0));
+            goalTimes.Add(new Vector3Int(3, 0, 0));
+            goalTimes.Add(new Vector3Int(3, 30, 0));
+            goalTimes.Add(new Vector3Int(4, 0, 0));
+            goalTimes.Add(new Vector3Int(5, 0, 0));
         }
-
+        for (int i = 0;i < 4;i++)
+        {
+            string goaltext = "G: " + goalTimes[i].x.ToString("D2") + ":" + goalTimes[i].y.ToString("D2") + ":" + goalTimes[i].z.ToString("D2");
+            switch(i)
+            {
+                case 0: T1TD.text = goaltext; break;
+                case 1: T2TD.text = goaltext; break;
+                case 2: T3TD.text = goaltext; break;
+                case 3: T4TD.text = goaltext; break;
+            }
+        }
         hasPlayed[0] = false;
         hasPlayed[1] = false;
         hasPlayed[2] = false;
@@ -70,12 +80,12 @@ public class TrialHandler : MonoBehaviour
 
         if (T1TD != null)
         {
-            if (current_trial > 0 && current_trial < 4)
+            if (current_trial > 0 && current_trial <= 4)
             {
                 if (validateTime(currentTime, PlayerTimes[current_trial - 1]) || PlayerTimes[current_trial - 1] == emptyV3I)
                 {
                     PlayerTimes[current_trial - 1] = currentTime;
-                    String newtext = PlayerTimes[current_trial - 1].x.ToString("D2") + ":" + PlayerTimes[current_trial - 1].y.ToString("D2") + ":" + PlayerTimes[current_trial].z.ToString("D2");
+                    String newtext = "P: " + PlayerTimes[current_trial - 1].x.ToString("D2") + ":" + PlayerTimes[current_trial - 1].y.ToString("D2") + ":" + PlayerTimes[current_trial-1].z.ToString("D2");
                     switch (current_trial)
                     {
                         case 1: T1TD.text = newtext;
