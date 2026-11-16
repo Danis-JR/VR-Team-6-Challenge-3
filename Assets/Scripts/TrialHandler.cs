@@ -16,10 +16,10 @@ public class TrialHandler : MonoBehaviour
     private List<Vector3Int> goalTimes = new List<Vector3Int>();
 
     private List<Vector3Int> PlayerTimes = new List<Vector3Int> {
-        new Vector3Int(0, 0, 0),
-        new Vector3Int(0, 0, 0),
-        new Vector3Int(0, 0, 0),
-        new Vector3Int(0, 0, 0)
+        new Vector3Int(3, 0, 0),
+        new Vector3Int(3, 0, 0),
+        new Vector3Int(4, 0, 0),
+        new Vector3Int(5, 0, 0)
     };
     private Vector3Int currentTime = new Vector3Int(0, 0, 0);
     private Vector3Int emptyV3I = new Vector3Int(0, 0, 0);
@@ -64,12 +64,12 @@ public class TrialHandler : MonoBehaviour
 
         if (T1TD != null)
         {
-            if (current_trial > 0 && current_trial < 4)
+            if (current_trial > 0 && current_trial <= 4)
             {
                 if (validateTime(currentTime, PlayerTimes[current_trial - 1]) || PlayerTimes[current_trial - 1] == emptyV3I)
                 {
                     PlayerTimes[current_trial - 1] = currentTime;
-                    String newtext = PlayerTimes[current_trial - 1].x.ToString("D2") + ":" + PlayerTimes[current_trial - 1].y.ToString("D2") + ":" + PlayerTimes[current_trial].z.ToString("D2");
+                    String newtext = "P: " + PlayerTimes[current_trial - 1].x.ToString("D2") + ":" + PlayerTimes[current_trial - 1].y.ToString("D2") + ":" + PlayerTimes[current_trial-1].z.ToString("D2");
                     switch (current_trial)
                     {
                         case 1: T1TD.text = newtext;
