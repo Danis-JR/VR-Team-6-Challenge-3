@@ -6,6 +6,7 @@ public class InfoToggle : MonoBehaviour
     [SerializeField] public AudioClip toggleOnSFX;
     [SerializeField] public AudioClip toggleOffSFX;
     private AudioSource audioSource;
+    private AudioListener audioListener;
 
     private GameObject infoDisplay;
     private bool enable = false;
@@ -13,6 +14,10 @@ public class InfoToggle : MonoBehaviour
     void Awake()
     {
         infoDisplay = transform.GetChild(0).gameObject;
+
+        audioListener = transform.parent.GetComponent<AudioListener>();
+        audioListener.enabled = true;
+        AudioListener.volume = 1.0f;
         
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;

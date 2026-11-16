@@ -54,7 +54,7 @@ public class GameAudioManager : MonoBehaviour
         voiceSource.playOnAwake = false;
         voiceSource.loop = false;
         voiceSource.spatialBlend = 0f;
-        voiceSource.volume = 1f;
+        voiceSource.volume = 0.8f;
     }
 
     void Start()

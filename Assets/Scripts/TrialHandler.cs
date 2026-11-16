@@ -47,11 +47,12 @@ public class TrialHandler : MonoBehaviour
     public void StopTrial()
     {
         trialActive = false;
+
         if (T1TD != null)
         {
             if (current_trial > 0 && current_trial < 4)
             {
-                if (validateTime(currentTime, PlayerTimes[current_trial]) || PlayerTimes[current_trial] == emptyV3I)
+                if (validateTime(currentTime, PlayerTimes[current_trial - 1]) || PlayerTimes[current_trial] == emptyV3I)
                 {
                     PlayerTimes[current_trial] = currentTime;
                     String newtext = PlayerTimes[current_trial].x.ToString("D2") + ":" + PlayerTimes[current_trial].y.ToString("D2") + ":" + PlayerTimes[current_trial].z.ToString("D2");
@@ -69,7 +70,7 @@ public class TrialHandler : MonoBehaviour
                 }
             }
         }
-        if (validateTime(currentTime, goalTimes[current_trial]))
+        if (validateTime(currentTime, goalTimes[current_trial-1]))
         {
 
             hasWon[current_trial - 1] = true;
@@ -81,12 +82,13 @@ public class TrialHandler : MonoBehaviour
             }
             else if (current_trial <= 4)
             {
-                current_trial += 1;
+                current_trial ++;
             }
 
         }
         currentTime.Set(0, 0, 0);
-        targetTracker.LayoutTrigger(current_trial, true);
+
+        targetTracker.LayoutTrigger(current_trial);
     }
 
     private bool validateTime(Vector3Int trialTime, Vector3Int goalTime)

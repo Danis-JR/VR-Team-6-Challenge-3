@@ -56,11 +56,11 @@ public class TargetHandler : MonoBehaviour
     [SerializeField] public GameObject BarrierPrefab;
     [SerializeField] public TrialHandler trialTracker;
     [SerializeField] public CourseDisplayer courseSign;
-    private AudioSource audioSource;
-    public AudioClip targetSFX;
 
     // Audio Manager Reference
     [SerializeField] public GameAudioManager audioManager;
+    private AudioSource audioSource;
+    public AudioClip targetSFX;
 
     [SerializeField]
     private List<Target> first_layout = new List<Target>();
@@ -92,6 +92,7 @@ public class TargetHandler : MonoBehaviour
         audioSource.playOnAwake = false;
         audioSource.loop = false;
         audioSource.spatialBlend = 0f;
+        audioSource.volume = 1.5f;
     }
 
     public bool stayActive(int targetID)
@@ -100,14 +101,11 @@ public class TargetHandler : MonoBehaviour
     }
 
 
-    public void LayoutTrigger(int layout, bool wasHandler = false) 
+    public void LayoutTrigger(int layout) 
     { 
-        if (!wasHandler)
-        {
-            trialTracker.current_trial = layout;
-        }
         if ((trialActive == false) && (activeSetup == false))
         {
+            audioSource.pitch = 1f;
             activeSetup = true;
             StartCoroutine(LayoutRoutine(layout));
         }
@@ -115,8 +113,12 @@ public class TargetHandler : MonoBehaviour
 
     public void HitTrigger(int targetID)
     {
-        audioSource.pitch += (1f / current_layout.Count);
-        audioSource.PlayOneShot(targetSFX);
+        if (trialActive == true)
+        {
+            audioSource.pitch += (1f / current_layout.Count);
+            audioSource.PlayOneShot(targetSFX);
+            audioManager.OnTargetHit();
+        }
 
         if (remainingTargets > 0)
         {
@@ -130,6 +132,7 @@ public class TargetHandler : MonoBehaviour
 
     public void StartTrigger()
     {
+        StartCoroutine(SpawnTargets());
         trialTracker.trialActive = true;
         trialActive = true;
         courseSign.PlayDisplay("start");
@@ -137,7 +140,7 @@ public class TargetHandler : MonoBehaviour
 
     IEnumerator SpawnTargets()
     {
-        remainingTargets = 0;
+        remainingTargets = current_layout.Count;
 
         for (int i = 0; i < current_layout.Count; i++)
         {
@@ -158,7 +161,6 @@ public class TargetHandler : MonoBehaviour
                     target = Instantiate(RingTargetPrefab, current_layout[i].spawnAnchor.transform.position, current_layout[i].spawnAnchor.transform.rotation);
                     target.GetComponentInChildren<RingInteractable>().SetUp(i, current_layout[i].size, this);
                     target.GetComponentInChildren<RingInteractable>().Move(minVals, maxVals, curveVal, current_layout[i].speed);
-                    remainingTargets++;
                 }
 
                 else if ( current_layout[i].type == "Floor")
@@ -167,11 +169,11 @@ public class TargetHandler : MonoBehaviour
                     target = Instantiate(FloorTargetPrefab, current_layout[i].spawnAnchor.transform.position, current_layout[i].spawnAnchor.transform.rotation);
                     target.GetComponentInChildren<FloorInteractable>().SetUp(i, current_layout[i].size, this);
                     target.GetComponentInChildren<FloorInteractable>().Move(minVals, maxVals, curveVal, current_layout[i].speed);
-                    remainingTargets++;
                 }
 
                 else 
                 {
+                    remainingTargets--;
                     if (current_layout[i].size == 0f) { current_layout[i].size = 1f; }
                     target = Instantiate(BarrierPrefab, current_layout[i].spawnAnchor.transform.position, current_layout[i].spawnAnchor.transform.rotation);
                     target.GetComponentInChildren<BarrierInteractable>().SetUp(i, current_layout[i].size, this);

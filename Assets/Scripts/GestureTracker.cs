@@ -3,6 +3,7 @@ using UnityEngine.XR.Hands.Samples.GestureSample;
 
 public class GestureTracker : MonoBehaviour
 {
+    [SerializeField] public GameAudioManager audioManager;
     [SerializeField] public AudioClip underhandSummonSFX;
     [SerializeField] public AudioClip underhandThrowSFX;
     [SerializeField] public AudioClip wristSummonSFX;
@@ -17,6 +18,7 @@ public class GestureTracker : MonoBehaviour
 
     public bool isCurledActive = false;
     public bool isUnderHand = true;
+    int canSpeak = 0;
 
     void Awake() 
     { 
@@ -24,7 +26,7 @@ public class GestureTracker : MonoBehaviour
         audioSource.playOnAwake = false;
         audioSource.loop = false;
         audioSource.spatialBlend = 1f;
-        audioSource.volume = 0.01f;
+        audioSource.volume = 0.5f;
     }
 
 
@@ -48,6 +50,8 @@ public class GestureTracker : MonoBehaviour
     {
         if (isCurledActive == true)
         { 
+           canSpeak++;
+           if (canSpeak == Random.Range(10, 13)) { audioManager.OnSnowballThrown(); canSpeak = 0; }
            isCurledActive = false;
         }
     }
