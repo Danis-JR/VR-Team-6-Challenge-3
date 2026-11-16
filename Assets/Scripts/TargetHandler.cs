@@ -90,8 +90,12 @@ public class TargetHandler : MonoBehaviour
     }
 
 
-    public void LayoutTrigger(int layout) 
+    public void LayoutTrigger(int layout, bool wasHandler = false) 
     { 
+        if (!wasHandler)
+        {
+            trialTracker.current_trial = layout;
+        }
         if ((trialActive == false) && (activeSetup == false))
         {
             activeSetup = true;
@@ -110,6 +114,7 @@ public class TargetHandler : MonoBehaviour
 
     public void StartTrigger()
     {
+        trialTracker.trialActive = true;
         trialActive = true;
         courseSign.PlayDisplay("start");
     }

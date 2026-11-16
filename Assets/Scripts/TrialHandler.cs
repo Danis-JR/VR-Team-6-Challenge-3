@@ -11,23 +11,28 @@ public class TrialHandler : MonoBehaviour
     // Stores goal times as vectors X = mintues, Y = seconds, z = milliseconds
     [SerializeField]
     private List<Vector3Int> goalTimes = new List<Vector3Int>();
+    private List<Vector3Int> PlayerTimes = new List<Vector3Int> {
+        new Vector3Int(0, 0, 0),
+        new Vector3Int(0, 0, 0),
+        new Vector3Int(0, 0, 0),
+        new Vector3Int(0, 0, 0)
+    };
     private Vector3Int currentTime = new Vector3Int(0, 0, 0);
+    private Vector3Int emptyV3I = new Vector3Int(0, 0, 0);
+
+    private List<bool> hasWon = new List<bool> { false, false, false, false };
 
     public int current_trial = 1;
 
-    public TextMeshProUGUI timeDisplay;
+    public TextMeshProUGUI currentTimeDisplay;
+    // references to boards to show the player their completion time
+    public TextMeshProUGUI T1TD;
+    public TextMeshProUGUI T2TD;
+    public TextMeshProUGUI T3TD;
+    public TextMeshProUGUI T4TD;
 
     public bool trialActive = false;
 
-    void Start()
-    {
-        // Start is called once before the first execution of Update
-    }
-
-    void Update()
-    {
-        // Update is called once per frame
-    }
 
     public void StartTrial()
     {
@@ -39,17 +44,42 @@ public class TrialHandler : MonoBehaviour
     public void StopTrial()
     {
         trialActive = false;
-        if (current_trial < 4)
+        if (T1TD != null)
         {
-            if (validateTime(currentTime, goalTimes[current_trial]))
+            if (current_trial > 0 && current_trial < 4)
+            {
+                if (validateTime(currentTime, PlayerTimes[current_trial]) || PlayerTimes[current_trial] == emptyV3I)
+                {
+                    PlayerTimes[current_trial] = currentTime;
+                    String newtext = PlayerTimes[current_trial].x.ToString("D2") + ":" + PlayerTimes[current_trial].y.ToString("D2") + ":" + PlayerTimes[current_trial].z.ToString("D2");
+                    switch (current_trial)
+                    {
+                        case 1: T1TD.text = newtext;
+                            break;
+                        case 2: T2TD.text = newtext;
+                            break;
+                        case 3: T3TD.text = newtext;
+                            break;
+                        case 4: T3TD.text = newtext;
+                            break;
+                    }
+                }
+            }
+        }
+        if (validateTime(currentTime, goalTimes[current_trial]))
+        {
+            hasWon[current_trial - 1] = true;
+            if (hasWon[0] == true && hasWon[1] == true && hasWon[2] == true && hasWon[3] == true)
+            {
+                // enter win state
+            }
+            else if (current_trial <= 4)
             {
                 current_trial += 1;
             }
-            currentTime.Set(0, 0, 0);
-            targetTracker.LayoutTrigger(current_trial);
         }
-
-
+        currentTime.Set(0, 0, 0);
+        targetTracker.LayoutTrigger(current_trial, true);
     }
 
     private bool validateTime(Vector3Int trialTime, Vector3Int goalTime)
@@ -78,9 +108,7 @@ public class TrialHandler : MonoBehaviour
             currentTime.y = Mathf.RoundToInt(time.Seconds);
             currentTime.z = Mathf.RoundToInt(time.Milliseconds / 10);
 
-            timeDisplay.text = currentTime.x.ToString("D2") + ":" + currentTime.y.ToString("D2") + ":" + currentTime.z.ToString("D2");
+            currentTimeDisplay.text = currentTime.x.ToString("D2") + ":" + currentTime.y.ToString("D2") + ":" + currentTime.z.ToString("D2");
         }
-
-        currentTime.Set(0, 0, 0);
     }
 }
