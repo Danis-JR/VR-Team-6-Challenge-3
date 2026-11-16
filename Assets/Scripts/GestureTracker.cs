@@ -51,7 +51,7 @@ public class GestureTracker : MonoBehaviour
         if (isCurledActive == true)
         { 
            canSpeak++;
-           if (canSpeak == Random.Range(10, 13)) { audioManager.OnSnowballThrown(); canSpeak = 0; }
+           if (canSpeak == UnityEngine.Random.Range(10, 13)) { audioManager.OnSnowballThrown(); canSpeak = 0; }
            isCurledActive = false;
         }
     }

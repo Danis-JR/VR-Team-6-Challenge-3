@@ -119,7 +119,7 @@ public class FloorInteractable : MonoBehaviour
     IEnumerator Pause()
     {
         isPaused = true;
-        yield return new WaitForSeconds(2.55f);
+        yield return new WaitForSeconds(2.6f);
 
         isPaused = false;
         animator.speed = 1f;

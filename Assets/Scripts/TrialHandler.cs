@@ -21,10 +21,12 @@ public class TrialHandler : MonoBehaviour
         new Vector3Int(0, 0, 0),
         new Vector3Int(0, 0, 0)
     };
+
     private Vector3Int currentTime = new Vector3Int(0, 0, 0);
     private Vector3Int emptyV3I = new Vector3Int(0, 0, 0);
 
     private List<bool> hasWon = new List<bool> { false, false, false, false };
+    public List<bool> hasPlayed = new List<bool> { false, false, false };
 
     public int current_trial = 1;
 
@@ -45,6 +47,10 @@ public class TrialHandler : MonoBehaviour
             goalTimes.Add(new Vector3Int(0, 0, 0));
             goalTimes.Add(new Vector3Int(0, 0, 0));
         }
+
+        hasPlayed[0] = false;
+        hasPlayed[1] = false;
+        hasPlayed[2] = false;
     }
 
     public bool trialActive = false;
@@ -94,12 +100,11 @@ public class TrialHandler : MonoBehaviour
                 // enter win state
                 if (audioManager != null) { audioManager.OnAllLayoutsCompleted(); }
             }
-            else if (current_trial <= 4)
-            {
-                current_trial ++;
-            }
-
         }
+
+        hasPlayed[current_trial - 1] = true; 
+        if (current_trial < 4) { current_trial++; }
+
         currentTime = new Vector3Int(0, 0, 0);
         targetTracker.LayoutTrigger(current_trial);
         targetTracker.courseSign.PlayDisplay(current_trial.ToString());

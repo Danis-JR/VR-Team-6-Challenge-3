@@ -109,8 +109,8 @@ public class SnowballSpawnable : MonoBehaviour
         {
             if (collision.gameObject.tag != "Floor Target") 
             { 
-                if (canSpeak == 3) { parentHand.audioManager.OnTargetMissed(); canSpeak = 0; } 
-                else { canSpeak++; }
+                canSpeak++;
+                if (canSpeak == UnityEngine.Random.Range(5, 7)) { parentHand.audioManager.OnTargetMissed(); canSpeak = 0; } 
             }
 
             if (isToss == true) { audioSource.PlayOneShot(defaultSFX); }

@@ -80,6 +80,7 @@ public class TargetHandler : MonoBehaviour
     public bool trialActive = false;
 
     private int activeLayout = 1;
+    private int canSpeak = 0;
     private bool activeSetup = false;
 
     void Awake() 
@@ -103,6 +104,12 @@ public class TargetHandler : MonoBehaviour
 
     public void LayoutTrigger(int layout) 
     { 
+        if ((layout > 1) && (trialTracker.hasPlayed[layout - 2] == false))
+        { 
+            courseSign.TriggerInvalid(layout, trialTracker.hasPlayed[0], trialTracker.hasPlayed[1], trialTracker.hasPlayed[2]); 
+            return;
+        }
+
         if ((trialActive == false) && (activeSetup == false))
         {
             audioSource.pitch = 1f;
@@ -119,7 +126,9 @@ public class TargetHandler : MonoBehaviour
         {
             audioSource.pitch += (1f / current_layout.Count);
             audioSource.PlayOneShot(targetSFX);
-            audioManager.OnTargetHit();
+
+            canSpeak++;
+            if (canSpeak == UnityEngine.Random.Range(5, 7)) { audioManager.OnTargetHit(); canSpeak = 0; }
         }
 
         if (remainingTargets > 0)
@@ -235,7 +244,7 @@ public class TargetHandler : MonoBehaviour
             current_layout = fourth_layout; 
         }
 
-        trialTracker.current_trial = current_layout;
+        trialTracker.current_trial = layout;
         courseSign.PlayDisplay(activeLayout.ToString());
         StartCoroutine(SpawnTargets());
     }

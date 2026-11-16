@@ -36848,6 +36848,10 @@ PrefabInstance:
       propertyPath: second_layout.Array.data[4].spawnAnchor
       value: 
       objectReference: {fileID: 584018643}
+    - target: {fileID: 6183094284819816439, guid: 622a4419683541546a933c0f5cc92f81, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -45
+      objectReference: {fileID: 0}
     - target: {fileID: 8043579890835653253, guid: 622a4419683541546a933c0f5cc92f81, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.1403
