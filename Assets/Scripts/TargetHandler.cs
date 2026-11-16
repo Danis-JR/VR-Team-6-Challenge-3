@@ -77,13 +77,13 @@ public class TargetHandler : MonoBehaviour
     public int remainingTargets = 0;
     public bool trialActive = false;
 
-    private int activeLayout = 4;
+    private int activeLayout = 1;
     private bool activeSetup = false;
 
     void Awake() 
     { 
         activeSetup = true;
-        current_layout = fourth_layout;
+        current_layout = first_layout;
         StartCoroutine(SpawnTargets());
     }
 
