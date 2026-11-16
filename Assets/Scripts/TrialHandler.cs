@@ -85,7 +85,7 @@ public class TrialHandler : MonoBehaviour
                 if (validateTime(currentTime, PlayerTimes[current_trial - 1]) || PlayerTimes[current_trial - 1] == emptyV3I)
                 {
                     PlayerTimes[current_trial - 1] = currentTime;
-                    String newtext = "P: " + PlayerTimes[current_trial - 1].x.ToString("D2") + ":" + PlayerTimes[current_trial - 1].y.ToString("D2") + ":" + PlayerTimes[current_trial].z.ToString("D2");
+                    String newtext = "P: " + PlayerTimes[current_trial - 1].x.ToString("D2") + ":" + PlayerTimes[current_trial - 1].y.ToString("D2") + ":" + PlayerTimes[current_trial-1].z.ToString("D2");
                     switch (current_trial)
                     {
                         case 1: T1TD.text = newtext;
