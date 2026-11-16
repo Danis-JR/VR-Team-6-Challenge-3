@@ -13,7 +13,7 @@ public class TrialHandler : MonoBehaviour
     private List<Vector3Int> goalTimes = new List<Vector3Int>();
     private Vector3Int currentTime = new Vector3Int(0, 0, 0);
 
-    public int current_trial = 0;
+    public int current_trial = 1;
 
     public TextMeshProUGUI timeDisplay;
 
@@ -31,7 +31,6 @@ public class TrialHandler : MonoBehaviour
 
     public void StartTrial()
     {
-        current_trial++;
         targetTracker.StartTrigger();
         trialActive = true;
         StartCoroutine(stopwatch());
@@ -40,19 +39,16 @@ public class TrialHandler : MonoBehaviour
     public void StopTrial()
     {
         trialActive = false;
+        if (current_trial < 4)
+        {
+            if (validateTime(currentTime, goalTimes[current_trial]))
+            {
+                current_trial += 1;
+            }
+            currentTime.Set(0, 0, 0);
+            targetTracker.LayoutTrigger(current_trial);
+        }
 
-        if (validateTime(currentTime, goalTimes[current_trial]))
-        {
-            // if Player hit all goals in time
-        }
-        else if (targetTracker.remainingTargets != 0)
-        {
-            // if trial was aborted (May implement, not sure)
-        }
-        else 
-        {
-            // If player hit all targets, but went over the goal time.
-        }
 
     }
 
@@ -84,5 +80,7 @@ public class TrialHandler : MonoBehaviour
 
             timeDisplay.text = currentTime.x.ToString("D2") + ":" + currentTime.y.ToString("D2") + ":" + currentTime.z.ToString("D2");
         }
+
+        currentTime.Set(0, 0, 0);
     }
 }

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BarrierInteractable : MonoBehaviour
 {
+    [SerializeField] public AudioClip spawnSFX;
+    [SerializeField] public AudioClip despawnSFX;
+    [SerializeField] public AudioClip frozenSFX;
+
     [SerializeField] private TargetHandler handler;
     [SerializeField] public int targetID = -1;
 
@@ -16,21 +20,35 @@ public class BarrierInteractable : MonoBehaviour
     private bool toFloor = false;
     private bool isCurve = false;
     private bool isPaused = false;
+    private bool isHeard = false;
 
     private GameObject rim;
     private GameObject origin;
     private Animator animator;
+    private AudioSource audioSource;
 
     void Awake()
     {
         rim = transform.parent.gameObject;
         origin = rim.transform.parent.gameObject;
         animator = origin.GetComponent<Animator>();
+
+        audioSource = origin.GetComponent<AudioSource>();
+        audioSource.PlayOneShot(spawnSFX);
     }
 
     void Update()
     {
-        if (handler.stayActive(targetID) == false) { animator.SetTrigger("destory"); }
+        if (handler.stayActive(targetID) == false) 
+        { 
+            if (isHeard == false) 
+            { 
+                audioSource.PlayOneShot(despawnSFX); 
+                isHeard = true;
+            }
+
+            animator.SetTrigger("destory"); 
+        }
 
         if (isPaused) return;
 
@@ -95,12 +113,17 @@ public class BarrierInteractable : MonoBehaviour
         {
             if (collision.GetComponent<SnowballSpawnable>().isToss == false && (toFloor == false)) 
             {
+                audioSource.PlayOneShot(frozenSFX);
+                
                 if (collision.gameObject.transform.position.y > origin.transform.position.y) 
                 { 
                     animator.SetTrigger("up"); 
                 }
 
-                else { animator.SetTrigger("down"); }
+                else 
+                { 
+                    animator.SetTrigger("down"); 
+                }
 
                 StartCoroutine(Pause());
             }
