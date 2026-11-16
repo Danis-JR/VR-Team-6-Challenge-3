@@ -18,15 +18,22 @@ public class GestureTracker : MonoBehaviour
     public bool isCurledActive = false;
     public bool isUnderHand = true;
 
-    void Awake() {}
+    void Awake() 
+    { 
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.loop = false;
+        audioSource.spatialBlend = 1f;
+        audioSource.volume = 0.01f;
+    }
 
 
     public void GenerateTrigger()
     {
         if (isCurledActive == false)
         { 
-           //if (isUnderHand == true) { audioSource.PlayOneShot(underhandSummonSFX); }
-           //else { audioSource.PlayOneShot(wristSummonSFX); }
+           if (isUnderHand == true) { audioSource.PlayOneShot(underhandSummonSFX); }
+           else { audioSource.PlayOneShot(wristSummonSFX); }
 
            snowballInstance = Instantiate(snowballPrefab, HandMarker.transform.position, HandMarker.transform.rotation);
 
@@ -49,7 +56,7 @@ public class GestureTracker : MonoBehaviour
     {
         if (isUnderHand == false)
         { 
-           //audioSource.PlayOneShot(underhandThrowSFX);
+           audioSource.PlayOneShot(underhandThrowSFX);
            isUnderHand = true; 
         }
     }
@@ -58,7 +65,7 @@ public class GestureTracker : MonoBehaviour
     {
         if (isUnderHand == true)
         { 
-           //audioSource.PlayOneShot(wristThrowSFX);
+           audioSource.PlayOneShot(wristThrowSFX);
            isUnderHand = false; 
         }
     }

@@ -56,6 +56,8 @@ public class TargetHandler : MonoBehaviour
     [SerializeField] public GameObject BarrierPrefab;
     [SerializeField] public TrialHandler trialTracker;
     [SerializeField] public CourseDisplayer courseSign;
+    private AudioSource audioSource;
+    public AudioClip targetSFX;
 
     // Audio Manager Reference
     [SerializeField] public GameAudioManager audioManager;
@@ -85,6 +87,11 @@ public class TargetHandler : MonoBehaviour
         activeSetup = true;
         current_layout = first_layout;
         StartCoroutine(SpawnTargets());
+
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.loop = false;
+        audioSource.spatialBlend = 0f;
     }
 
     public bool stayActive(int targetID)
@@ -108,7 +115,8 @@ public class TargetHandler : MonoBehaviour
 
     public void HitTrigger(int targetID)
     {
-
+        audioSource.pitch += (1f / current_layout.Count);
+        audioSource.PlayOneShot(targetSFX);
 
         if (remainingTargets > 0)
         {

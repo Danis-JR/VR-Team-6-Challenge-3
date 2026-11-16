@@ -5,6 +5,7 @@ public class InfoToggle : MonoBehaviour
 {
     [SerializeField] public AudioClip toggleOnSFX;
     [SerializeField] public AudioClip toggleOffSFX;
+    private AudioSource audioSource;
 
     private GameObject infoDisplay;
     private bool enable = false;
@@ -12,6 +13,11 @@ public class InfoToggle : MonoBehaviour
     void Awake()
     {
         infoDisplay = transform.GetChild(0).gameObject;
+        
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.loop = false;
+        audioSource.spatialBlend = 1f;
     }
 
     void LateUpdate()
@@ -24,12 +30,14 @@ public class InfoToggle : MonoBehaviour
     {
         if (enable == false)
         { 
+            audioSource.PlayOneShot(toggleOnSFX);
             infoDisplay.SetActive(true);
             enable = true;
         }
 
         else
         {
+            audioSource.PlayOneShot(toggleOffSFX);
             infoDisplay.SetActive(false);
             enable = false;
         }
