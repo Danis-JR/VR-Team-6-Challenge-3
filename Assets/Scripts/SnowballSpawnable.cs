@@ -82,6 +82,14 @@ public class SnowballSpawnable : MonoBehaviour
         else { physicsBody.AddForce(direction * throwVelocity, ForceMode.Impulse);}
 
         isReleased = true; 
+        // Notify Audio Manager When Snowball Is Thrown
+        GameAudioManager audioManager = FindFirstObjectByType<GameAudioManager>();
+
+        if (audioManager != null)
+        {
+            audioManager.OnSnowballThrown();
+        }
+
     }
 
     public void InitializeObject(GameObject parent)

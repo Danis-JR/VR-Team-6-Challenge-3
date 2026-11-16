@@ -57,6 +57,9 @@ public class TargetHandler : MonoBehaviour
     [SerializeField] public TrialHandler trialTracker;
     [SerializeField] public CourseDisplayer courseSign;
 
+    // Audio Manager Reference
+    [SerializeField] public GameAudioManager audioManager;
+
     [SerializeField]
     private List<Target> first_layout = new List<Target>();
 
@@ -101,6 +104,10 @@ public class TargetHandler : MonoBehaviour
 
     public void HitTrigger(int targetID)
     {
+        // Step 2 — Play Hit Dialogue
+        if (audioManager != null)
+            audioManager.OnTargetHit();
+            
         remainingTargets--;
 
         if (remainingTargets == 0) { if (trialActive) { trialTracker.StopTrial(); } }

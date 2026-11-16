@@ -8,6 +8,9 @@ public class TrialHandler : MonoBehaviour
 {
     [SerializeField] public TargetHandler targetTracker;
 
+    //Final Victory Audio Reference
+    [SerializeField] public GameAudioManager audioManager;
+
     // Stores goal times as vectors X = mintues, Y = seconds, z = milliseconds
     [SerializeField]
     private List<Vector3Int> goalTimes = new List<Vector3Int>();
@@ -44,6 +47,10 @@ public class TrialHandler : MonoBehaviour
         if (validateTime(currentTime, goalTimes[current_trial]))
         {
             // if Player hit all goals in time
+            if (current_trial == 4 && audioManager != null)
+            {
+                audioManager.OnAllLayoutsCompleted();
+            }
         }
         else if (targetTracker.remainingTargets != 0)
         {
