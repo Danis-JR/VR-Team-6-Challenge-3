@@ -10,8 +10,6 @@ public class RingInteractable : MonoBehaviour
 
     [SerializeField] private TargetHandler handler;
 
-    [SerializeField] private GameAudioManager audioManager;
-
     [SerializeField] public int targetID = -1;
 
     private Vector3 minPos;
@@ -27,7 +25,6 @@ public class RingInteractable : MonoBehaviour
     private GameObject rim;
     private GameObject origin;
     private Animator animator;
-    private AudioSource audioSource;
 
     void Awake()
     {
@@ -35,9 +32,6 @@ public class RingInteractable : MonoBehaviour
         origin = rim.transform.parent.gameObject;
         animator = origin.GetComponent<Animator>();
 
-        audioSource = origin.GetComponent<AudioSource>();
-        audioManager = FindAnyObjectByType<GameAudioManager>();
-        audioSource.PlayOneShot(spawnSFX);
     }
 
     void Update()
@@ -46,7 +40,6 @@ public class RingInteractable : MonoBehaviour
         { 
             if (isHeard == false) 
             { 
-                audioSource.PlayOneShot(despawnSFX); 
                 isHeard = true;
             }
 
@@ -119,14 +112,11 @@ public class RingInteractable : MonoBehaviour
             if (collision.GetComponent<SnowballSpawnable>().isToss == true) 
             {
                 handler.HitTrigger(targetID);
-                audioManager.OnTargetHit();
                 animator.SetTrigger("hit");
-                audioSource.PlayOneShot(despawnSFX);
             }
 
             else 
             { 
-                audioSource.PlayOneShot(frozenSFX);
                 StartCoroutine(Pause()); 
             }
         }
@@ -135,7 +125,7 @@ public class RingInteractable : MonoBehaviour
     IEnumerator Pause()
     {
         isPaused = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.25f);
 
         isPaused = false;
         animator.speed = 1f;

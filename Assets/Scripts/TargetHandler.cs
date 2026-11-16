@@ -108,9 +108,7 @@ public class TargetHandler : MonoBehaviour
 
     public void HitTrigger(int targetID)
     {
-        // Play hit dialogue
-        // if (audioManager != null)
-        //    audioManager.OnTargetHit();
+
 
         if (remainingTargets > 0)
         {

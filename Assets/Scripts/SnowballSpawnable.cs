@@ -25,7 +25,6 @@ public class SnowballSpawnable : MonoBehaviour
     private GestureTracker parentHand;
     private Rigidbody physicsBody;
     private Animator animator;
-    private AudioSource audioSource;
     private GameObject debris;
 
     private bool isReleased = false;
@@ -39,7 +38,6 @@ public class SnowballSpawnable : MonoBehaviour
     { 
         physicsBody = GetComponent<Rigidbody>(); 
         animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();;
     }
 
     // Update is called once per frame
@@ -89,12 +87,6 @@ public class SnowballSpawnable : MonoBehaviour
 
         isReleased = true; 
         // Notify Audio Manager When Snowball Is Thrown
-        GameAudioManager audioManager = FindAnyObjectByType<GameAudioManager>();
-
-        if (audioManager != null)
-        {
-            audioManager.OnSnowballThrown();
-        }
 
     }
 
@@ -110,11 +102,11 @@ public class SnowballSpawnable : MonoBehaviour
     {
         if (collision.gameObject.tag != "Ring Target")
         {
-            if (collision.gameObject.tag == "Snowball") { audioSource.PlayOneShot(snowballSFX); }
+            //if (collision.gameObject.tag == "Snowball") { audioSource.PlayOneShot(snowballSFX); }
 
-            else if (collision.gameObject.tag == "Barrier") { audioSource.PlayOneShot(barrierSFX); }
+            //else if (collision.gameObject.tag == "Barrier") { audioSource.PlayOneShot(barrierSFX); }
 
-            else { audioSource.PlayOneShot(defaultSFX); }
+           // else { audioSource.PlayOneShot(defaultSFX); }
 
             debris = Instantiate(debrisPrefab, transform.position, transform.rotation);
             ParticleSystem particles = debris.GetComponent<ParticleSystem>();

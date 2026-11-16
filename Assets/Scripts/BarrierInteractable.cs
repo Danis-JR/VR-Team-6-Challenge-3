@@ -25,7 +25,6 @@ public class BarrierInteractable : MonoBehaviour
     private GameObject rim;
     private GameObject origin;
     private Animator animator;
-    private AudioSource audioSource;
 
     void Awake()
     {
@@ -33,8 +32,6 @@ public class BarrierInteractable : MonoBehaviour
         origin = rim.transform.parent.gameObject;
         animator = origin.GetComponent<Animator>();
 
-        audioSource = origin.GetComponent<AudioSource>();
-        audioSource.PlayOneShot(spawnSFX);
     }
 
     void Update()
@@ -43,7 +40,6 @@ public class BarrierInteractable : MonoBehaviour
         { 
             if (isHeard == false) 
             { 
-                audioSource.PlayOneShot(despawnSFX); 
                 isHeard = true;
             }
 
@@ -113,7 +109,6 @@ public class BarrierInteractable : MonoBehaviour
         {
             if (collision.GetComponent<SnowballSpawnable>().isToss == false && (toFloor == false)) 
             {
-                audioSource.PlayOneShot(frozenSFX);
                 
                 if (collision.gameObject.transform.position.y > origin.transform.position.y) 
                 { 

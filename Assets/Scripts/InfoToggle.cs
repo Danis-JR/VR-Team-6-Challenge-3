@@ -7,14 +7,11 @@ public class InfoToggle : MonoBehaviour
     [SerializeField] public AudioClip toggleOffSFX;
 
     private GameObject infoDisplay;
-    private AudioSource audioSource;
-
     private bool enable = false;
 
     void Awake()
     {
         infoDisplay = transform.GetChild(0).gameObject;
-        audioSource = GetComponent<AudioSource>();
     }
 
     void LateUpdate()
@@ -27,14 +24,12 @@ public class InfoToggle : MonoBehaviour
     {
         if (enable == false)
         { 
-            audioSource.PlayOneShot(toggleOnSFX);
             infoDisplay.SetActive(true);
             enable = true;
         }
 
         else
         {
-            audioSource.PlayOneShot(toggleOffSFX);
             infoDisplay.SetActive(false);
             enable = false;
         }
