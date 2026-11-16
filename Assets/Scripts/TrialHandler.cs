@@ -7,6 +7,7 @@ using UnityEngine;
 public class TrialHandler : MonoBehaviour
 {
     [SerializeField] public TargetHandler targetTracker;
+    [SerializeField] public SuccessHandler wincheck;
 
     // Stores goal times as vectors X = mintues, Y = seconds, z = milliseconds
     [SerializeField]
@@ -41,6 +42,14 @@ public class TrialHandler : MonoBehaviour
             // if all are targets hit
         }
 
+        if (validateTime(currentTime, goalTimes[current_trial]))
+        {
+            wincheck.setWin(current_trial);
+        }
+        else if (targetTracker.remainingTargets != 0)
+        {
+            // if trial was aborted (May implement, not sure)
+        }
         else 
         {
             // if trial ended before all are targets hit
