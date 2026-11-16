@@ -8,6 +8,9 @@ public class TrialHandler : MonoBehaviour
 {
     [SerializeField] public TargetHandler targetTracker;
 
+    //Final Victory Audio Reference
+    [SerializeField] public GameAudioManager audioManager;
+
     // Stores goal times as vectors X = mintues, Y = seconds, z = milliseconds
     [SerializeField]
     private List<Vector3Int> goalTimes = new List<Vector3Int>();
@@ -68,15 +71,19 @@ public class TrialHandler : MonoBehaviour
         }
         if (validateTime(currentTime, goalTimes[current_trial]))
         {
+
             hasWon[current_trial - 1] = true;
             if (hasWon[0] == true && hasWon[1] == true && hasWon[2] == true && hasWon[3] == true)
             {
                 // enter win state
+                    if (audioManager != null)
+                        audioManager.OnAllLayoutsCompleted();
             }
             else if (current_trial <= 4)
             {
                 current_trial += 1;
             }
+
         }
         currentTime.Set(0, 0, 0);
         targetTracker.LayoutTrigger(current_trial, true);
