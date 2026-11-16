@@ -104,10 +104,13 @@ public class TargetHandler : MonoBehaviour
 
     public void LayoutTrigger(int layout) 
     { 
-        if ((layout > 1) && (trialTracker.hasPlayed[layout - 2] == false))
+        if ((layout > 1))
         { 
+            if (trialTracker.hasPlayed[layout - 2] == false)
+            {
             courseSign.TriggerInvalid(layout, trialTracker.hasPlayed[0], trialTracker.hasPlayed[1], trialTracker.hasPlayed[2]); 
             return;
+            }
         }
 
         if ((trialActive == false) && (activeSetup == false))
