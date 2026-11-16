@@ -9,6 +9,9 @@ public class FloorInteractable : MonoBehaviour
     [SerializeField] public AudioClip frozenSFX;
 
     [SerializeField] private TargetHandler handler;
+
+    [SerializeField] private GameAudioManager audioManager;
+
     [SerializeField] public int targetID = -1;
 
     private Vector3 minPos;
@@ -31,7 +34,7 @@ public class FloorInteractable : MonoBehaviour
         rim = transform.parent.gameObject;
         origin = rim.transform.parent.gameObject;
         animator = origin.GetComponent<Animator>();
-
+        audioManager = FindAnyObjectByType<GameAudioManager>();
         audioSource = origin.GetComponent<AudioSource>();
         audioSource.PlayOneShot(spawnSFX);
     }
@@ -111,6 +114,7 @@ public class FloorInteractable : MonoBehaviour
             if (collision.GetComponent<SnowballSpawnable>().isToss == true) 
             {
                 handler.HitTrigger(targetID);
+                audioManager.OnTargetHit();
                 animator.SetTrigger("hit");
                 audioSource.PlayOneShot(despawnSFX);
             }

@@ -15,6 +15,8 @@ public class SuccessHandler : MonoBehaviour
         if (wins[0] == true && wins[1] == true && wins[2] == true && wins[3] == true)
         {
             // tell game to enter 'win' state and do whatever it's meant to do when the player succeeds.
+            if (trialhandler.audioManager != null)
+                trialhandler.audioManager.OnAllLayoutsCompleted();
         }
     }
 }

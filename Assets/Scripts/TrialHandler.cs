@@ -20,6 +20,9 @@ public class TrialHandler : MonoBehaviour
     public TextMeshProUGUI timeDisplay;
 
     public bool trialActive = false;
+    
+    // Fix — Track the current trial
+    [SerializeField] public int current_trial = 1;
 
     void Start()
     {
@@ -49,13 +52,6 @@ public class TrialHandler : MonoBehaviour
         {
             // Preserve teammate's victory logic
             wincheck.setWin(current_trial);
-
-            // Play final victory audio
-            if (current_trial == 4 && audioManager != null)
-            {
-                audioManager.OnAllLayoutsCompleted();
-
-            }
 
         }
         else if (targetTracker.remainingTargets != 0)

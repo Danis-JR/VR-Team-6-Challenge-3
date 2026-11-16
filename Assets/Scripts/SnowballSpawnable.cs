@@ -89,7 +89,7 @@ public class SnowballSpawnable : MonoBehaviour
 
         isReleased = true; 
         // Notify Audio Manager When Snowball Is Thrown
-        GameAudioManager audioManager = FindFirstObjectByType<GameAudioManager>();
+        GameAudioManager audioManager = FindAnyObjectByType<GameAudioManager>();
 
         if (audioManager != null)
         {
