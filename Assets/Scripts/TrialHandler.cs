@@ -7,6 +7,7 @@ using UnityEngine;
 public class TrialHandler : MonoBehaviour
 {
     [SerializeField] public TargetHandler targetTracker;
+    [SerializeField] public SuccessHandler wincheck;
 
     //Final Victory Audio Reference
     [SerializeField] public GameAudioManager audioManager;
@@ -15,8 +16,6 @@ public class TrialHandler : MonoBehaviour
     [SerializeField]
     private List<Vector3Int> goalTimes = new List<Vector3Int>();
     private Vector3Int currentTime = new Vector3Int(0, 0, 0);
-
-    public int current_trial = 0;
 
     public TextMeshProUGUI timeDisplay;
 
@@ -34,7 +33,6 @@ public class TrialHandler : MonoBehaviour
 
     public void StartTrial()
     {
-        current_trial++;
         targetTracker.StartTrigger();
         trialActive = true;
         StartCoroutine(stopwatch());
@@ -42,15 +40,23 @@ public class TrialHandler : MonoBehaviour
 
     public void StopTrial()
     {
-        trialActive = false;
+        if (targetTracker.remainingTargets == 0)
+        {
+            // if all are targets hit
+        }
 
         if (validateTime(currentTime, goalTimes[current_trial]))
         {
-            // if Player hit all goals in time
+            // Preserve teammate's victory logic
+            wincheck.setWin(current_trial);
+
+            // Play final victory audio
             if (current_trial == 4 && audioManager != null)
             {
                 audioManager.OnAllLayoutsCompleted();
+
             }
+
         }
         else if (targetTracker.remainingTargets != 0)
         {
@@ -58,17 +64,18 @@ public class TrialHandler : MonoBehaviour
         }
         else 
         {
-            // If player hit all targets, but went over the goal time.
+            // if trial ended before all are targets hit
         }
 
+        trialActive = false;
     }
 
     private bool validateTime(Vector3Int trialTime, Vector3Int goalTime)
     {
         // compares time of current trial to see if goal was reached
 
-        if (trialTime.x > goalTime.x) { return false; } else if (trialTime.x < goalTime.x) { return true; }
-        if (trialTime.y > goalTime.y) { return false; } else if (trialTime.y < goalTime.y) { return true; }
+        if (trialTime.x > goalTime.x) { return false; }
+        if (trialTime.y > goalTime.y) { return false; }
         if (trialTime.z > goalTime.z) { return false; }
 
         return true;

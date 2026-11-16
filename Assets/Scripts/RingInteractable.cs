@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class RingInteractable : MonoBehaviour
 {
+    [SerializeField] public AudioClip spawnSFX;
+    [SerializeField] public AudioClip despawnSFX;
+    [SerializeField] public AudioClip frozenSFX;
+
     [SerializeField] private TargetHandler handler;
     [SerializeField] public int targetID = -1;
 
@@ -15,21 +19,35 @@ public class RingInteractable : MonoBehaviour
     private float timer = 0f;
     private bool isCurve = false;
     private bool isPaused = false;
+    private bool isHeard = false;
 
     private GameObject rim;
     private GameObject origin;
     private Animator animator;
+    private AudioSource audioSource;
 
     void Awake()
     {
         rim = transform.parent.gameObject;
         origin = rim.transform.parent.gameObject;
         animator = origin.GetComponent<Animator>();
+
+        audioSource = origin.GetComponent<AudioSource>();
+        audioSource.PlayOneShot(spawnSFX);
     }
 
     void Update()
     {
-        if (handler.stayActive(targetID) == false) { animator.SetTrigger("hit"); }
+        if (handler.stayActive(targetID) == false) 
+        { 
+            if (isHeard == false) 
+            { 
+                audioSource.PlayOneShot(despawnSFX); 
+                isHeard = true;
+            }
+
+            animator.SetTrigger("hit"); 
+        }
 
         if ( isPaused ) 
         {
@@ -93,20 +111,26 @@ public class RingInteractable : MonoBehaviour
     {
         if (collision.gameObject.tag == "Snowball")
         {
+
             if (collision.GetComponent<SnowballSpawnable>().isToss == true) 
             {
                 handler.HitTrigger(targetID);
                 animator.SetTrigger("hit");
+                audioSource.PlayOneShot(despawnSFX);
             }
 
-            else { StartCoroutine(Pause()); }
+            else 
+            { 
+                audioSource.PlayOneShot(frozenSFX);
+                StartCoroutine(Pause()); 
+            }
         }
     }
 
     IEnumerator Pause()
     {
         isPaused = true;
-        yield return new WaitForSeconds(1.75f);
+        yield return new WaitForSeconds(2f);
 
         isPaused = false;
         animator.speed = 1f;

@@ -104,11 +104,14 @@ public class TargetHandler : MonoBehaviour
 
     public void HitTrigger(int targetID)
     {
-        // Step 2 — Play Hit Dialogue
+        // Play hit dialogue
         if (audioManager != null)
             audioManager.OnTargetHit();
-            
-        remainingTargets--;
+
+        if (remainingTargets > 0)
+        {
+            remainingTargets--;
+        }
 
         if (remainingTargets == 0) { if (trialActive) { trialTracker.StopTrial(); } }
 
