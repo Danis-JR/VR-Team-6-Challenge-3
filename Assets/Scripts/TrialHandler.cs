@@ -7,14 +7,13 @@ using UnityEngine;
 public class TrialHandler : MonoBehaviour
 {
     [SerializeField] public TargetHandler targetTracker;
-    [SerializeField] public SuccessHandler wincheck;
 
     // Stores goal times as vectors X = mintues, Y = seconds, z = milliseconds
     [SerializeField]
     private List<Vector3Int> goalTimes = new List<Vector3Int>();
     private Vector3Int currentTime = new Vector3Int(0, 0, 0);
 
-    public int current_trial = 0;
+    public int current_trial = 1;
 
     public TextMeshProUGUI timeDisplay;
 
@@ -32,7 +31,6 @@ public class TrialHandler : MonoBehaviour
 
     public void StartTrial()
     {
-        current_trial++;
         targetTracker.StartTrigger();
         trialActive = true;
         StartCoroutine(stopwatch());
@@ -40,20 +38,24 @@ public class TrialHandler : MonoBehaviour
 
     public void StopTrial()
     {
-        trialActive = false;
+        if (current_trial < 4)
+        {
+            if (validateTime(currentTime, goalTimes[current_trial]))
+            {
+                current_trial += 1;
 
-        if (validateTime(currentTime, goalTimes[current_trial]))
-        {
-            wincheck.setWin(current_trial);
+            }
+            else if (targetTracker.remainingTargets != 0)
+            {
+                // if trial was aborted (May implement, not sure)
+            }
+            else
+            {
+                // If player hit all targets, but went over the goal time.
+            }
         }
-        else if (targetTracker.remainingTargets != 0)
-        {
-            // if trial was aborted (May implement, not sure)
-        }
-        else 
-        {
-            // If player hit all targets, but went over the goal time.
-        }
+
+        trialActive = false;
 
     }
 
@@ -85,5 +87,7 @@ public class TrialHandler : MonoBehaviour
 
             timeDisplay.text = currentTime.x.ToString("D2") + ":" + currentTime.y.ToString("D2") + ":" + currentTime.z.ToString("D2");
         }
+
+        currentTime.Set(0, 0, 0);
     }
 }
