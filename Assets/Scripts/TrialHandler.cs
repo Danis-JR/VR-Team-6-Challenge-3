@@ -80,7 +80,7 @@ public class TrialHandler : MonoBehaviour
 
         if (T1TD != null)
         {
-            if (current_trial > 0 && current_trial < 4)
+            if (current_trial > 0 && current_trial <= 4)
             {
                 if (validateTime(currentTime, PlayerTimes[current_trial - 1]) || PlayerTimes[current_trial - 1] == emptyV3I)
                 {
