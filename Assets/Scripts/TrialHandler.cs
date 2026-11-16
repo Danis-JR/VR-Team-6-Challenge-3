@@ -14,6 +14,7 @@ public class TrialHandler : MonoBehaviour
     // Stores goal times as vectors X = mintues, Y = seconds, z = milliseconds
     [SerializeField]
     private List<Vector3Int> goalTimes = new List<Vector3Int>();
+
     private List<Vector3Int> PlayerTimes = new List<Vector3Int> {
         new Vector3Int(0, 0, 0),
         new Vector3Int(0, 0, 0),
@@ -33,6 +34,18 @@ public class TrialHandler : MonoBehaviour
     public TextMeshProUGUI T2TD;
     public TextMeshProUGUI T3TD;
     public TextMeshProUGUI T4TD;
+
+    void Awake()
+    {
+        if (goalTimes.Count < 4) 
+        {
+            goalTimes.Clear();
+            goalTimes.Add(new Vector3Int(0, 0, 0));
+            goalTimes.Add(new Vector3Int(0, 0, 0));
+            goalTimes.Add(new Vector3Int(0, 0, 0));
+            goalTimes.Add(new Vector3Int(0, 0, 0));
+        }
+    }
 
     public bool trialActive = false;
 

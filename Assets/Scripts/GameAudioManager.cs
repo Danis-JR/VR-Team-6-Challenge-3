@@ -49,7 +49,7 @@ public class GameAudioManager : MonoBehaviour
         musicSource.playOnAwake = false;
         musicSource.loop = true;
         musicSource.spatialBlend = 0f;
-        voiceSource.volume = 0.75f;
+        musicSource.volume = 0.75f;
 
         voiceSource = gameObject.AddComponent<AudioSource>();
         voiceSource.playOnAwake = false;
