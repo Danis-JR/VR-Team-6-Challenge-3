@@ -1,0 +1,9 @@
+Process name: /home/coby/Unity/Hub/Editor/6000.5.9f1/Editor/unityhub-unity-editor-6000.5.9f1
+Process image: /home/coby/Unity/Hub/Editor/6000.5.9f1/Editor/unityhub-unity-editor-6000.5.9f1
+Process started: 2026.11.12.13.59.56.986
+Error: Unity VCS client is not correctly configured for the current user: Client config file /home/coby/.plastic4/client.conf not found. Please execute 'cm configure' to perform a text mode configuration or 'gtkplastic --configure' for graphical mode.
+StackTrace:   at Codice.Client.Common.ClientConfig.get_SafeData () [0x00034] in <fb1d2a5292364582990246a47acfa372>:0 
+  at Codice.Client.Common.ClientConfig.IsNewWorkspaceTreeFormatEnabled () [0x00001] in <fb1d2a5292364582990246a47acfa372>:0 
+  at Codice.CM.WorkspaceServer.WorkspaceTreeDataStore.CheckIsValidVersion (Codice.CM.Common.WorkspaceInfo wkInfo, System.Byte fileVersion) [0x00075] in <fb1d2a5292364582990246a47acfa372>:0 
+  at Codice.CM.WorkspaceServer.WorkspaceTreeDataStore.ReadLoadedChangesetFromFile (Codice.CM.Common.WorkspaceInfo wkInfo, System.String wkTreeFile, Codice.Utils.Buffers.FlexibleBufferPool bufferPool) [0x0005f] in <fb1d2a5292364582990246a47acfa372>:0 
+  at Codice.CM.WorkspaceServer.WorkspaceTreeDataStore.ReadLoadedChangesetId (Codice.CM.Common.WorkspaceInfo wkInfo, System.String wkTreeFile, Codice.Utils.Buffers.FlexibleBufferPool bufferPool) [0x00008] in <fb1d2a5292364582990246a47acfa372>:0 
