@@ -115,8 +115,9 @@ public class TrialHandler : MonoBehaviour
             }
         }
 
-        hasPlayed[current_trial - 1] = true; 
-        if (current_trial < 4) { current_trial++; }
+        
+        if (current_trial < 5) {  current_trial++; }
+        hasPlayed[current_trial - 2] = true;
 
         currentTime = new Vector3Int(0, 0, 0);
         targetTracker.LayoutTrigger(current_trial);
@@ -139,6 +140,10 @@ public class TrialHandler : MonoBehaviour
 
         while (trialActive == true)
         {
+            if(targetTracker.trialActive == false)
+            {
+                targetTracker.trialActive = true;
+            }
             yield return null;
 
             elapsedTime += Time.deltaTime;

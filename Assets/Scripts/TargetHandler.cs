@@ -104,13 +104,10 @@ public class TargetHandler : MonoBehaviour
 
     public void LayoutTrigger(int layout) 
     { 
-        if ((layout > 1))
+        if ((layout > 1) && (trialTracker.hasPlayed[layout - 2] == false))
         { 
-            if (trialTracker.hasPlayed[layout - 2] == false)
-            {
             courseSign.TriggerInvalid(layout, trialTracker.hasPlayed[0], trialTracker.hasPlayed[1], trialTracker.hasPlayed[2]); 
             return;
-            }
         }
 
         if ((trialActive == false) && (activeSetup == false))
@@ -152,6 +149,7 @@ public class TargetHandler : MonoBehaviour
     public void StartTrigger()
     {
         StartCoroutine(SpawnTargets());
+        trialTracker.trialActive = true;
         trialActive = true;
         courseSign.PlayDisplay("start");
     }
@@ -188,10 +186,9 @@ public class TargetHandler : MonoBehaviour
                     target.GetComponentInChildren<FloorInteractable>().SetUp(i, current_layout[i].size, this);
                     target.GetComponentInChildren<FloorInteractable>().Move(minVals, maxVals, curveVal, current_layout[i].speed);
                 }
-
                 else 
                 {
-                    remainingTargets--;
+                    
                     if (current_layout[i].size == 0f) { current_layout[i].size = 1f; }
                     target = Instantiate(BarrierPrefab, current_layout[i].spawnAnchor.transform.position, current_layout[i].spawnAnchor.transform.rotation);
                     target.GetComponentInChildren<BarrierInteractable>().SetUp(i, current_layout[i].size, this);
@@ -201,6 +198,10 @@ public class TargetHandler : MonoBehaviour
                 current_layout[i].reserve(target);
 
                 yield return new WaitForSeconds(0.3f);
+            }
+            if (current_layout[i].type == "Barrier")
+            {
+                remainingTargets--;
             }
         }
 
@@ -246,7 +247,7 @@ public class TargetHandler : MonoBehaviour
             current_layout = fourth_layout; 
         }
 
-        trialTracker.current_trial = activeLayout;
+        trialTracker.current_trial = layout;
         courseSign.PlayDisplay(activeLayout.ToString());
         StartCoroutine(SpawnTargets());
     }
